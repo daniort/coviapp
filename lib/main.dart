@@ -1,5 +1,8 @@
 import 'dart:convert';
-
+import 'package:covi/wid_factores/enlaces.dart';
+import 'package:covi/wid_factores/factores.dart';
+import 'package:covi/wid_factores/recomendaciones.dart';
+import 'package:covi/wid_factores/signos.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:twitter_api/twitter_api.dart';
@@ -64,8 +67,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: InkWell(
-                      onTap: () {
-                        res();
+                      onTap: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Factores(),
+                          ),
+                        ),
                       },
                       child: Container(
                         height: ((MediaQuery.of(context).size.height) * .15),
@@ -138,6 +146,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: InkWell(
+                      onTap: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Signos(),
+                          ),
+                        ),
+                      },
                       child: Container(
                         height: ((MediaQuery.of(context).size.height) * .15),
                         width: ((MediaQuery.of(context).size.width)),
@@ -209,6 +225,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: InkWell(
+                      onTap: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Recomendaciones(),
+                          ),
+                        ),
+                      },
                       child: Container(
                         height: ((MediaQuery.of(context).size.height) * .15),
                         width: ((MediaQuery.of(context).size.width)),
@@ -280,6 +304,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: InkWell(
+                      onTap: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Enlaces(),
+                          ),
+                        ),
+                      },
                       child: Container(
                         height: ((MediaQuery.of(context).size.height) * .15),
                         width: ((MediaQuery.of(context).size.width)),
@@ -356,8 +388,7 @@ class _MyHomePageState extends State<MyHomePage> {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 //color: Color(0xff0d2a31),
-                color: Colors.white
-            ),
+                color: Colors.white),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -428,7 +459,11 @@ class _MyHomePageState extends State<MyHomePage> {
                               //color: Color(0xfff0f3f5),
                               color: Color(0xff19535f),
                             ),
-                            child: Center(child: Text('data',style: TextStyle(color: Colors.white),)),
+                            child: Center(
+                                child: Text(
+                              'data',
+                              style: TextStyle(color: Colors.white),
+                            )),
                           ),
                         ),
                       ],
