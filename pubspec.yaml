@@ -13,6 +13,7 @@ dependencies:
   url_launcher: ^5.4.1
   font_awesome_flutter: ^8.5.0
   google_fonts: ^0.3.10
+  twitter_api: ^0.1.2
 
 dev_dependencies:
   flutter_test:
