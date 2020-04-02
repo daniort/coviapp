@@ -1,3 +1,4 @@
+import 'package:covi/menu_lateral/menu_wid.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -28,7 +29,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +40,6 @@ class _MyHomePageState extends State<MyHomePage> {
               floating: false,
               pinned: true,
               snap: false,
-              
               flexibleSpace: FlexibleSpaceBar(
                   stretchModes: <StretchMode>[
                     StretchMode.zoomBackground,
@@ -53,44 +52,94 @@ class _MyHomePageState extends State<MyHomePage> {
                     "https://image.freepik.com/free-photo/3d-render-conceptual-pandemic-epidemic-virus-medical-health-vaccine-research-microscopic-magnification-green-corona-virus-2019-ncov-outbreak-forms-like-sars-mers-can-be-lethal_166094-85.jpg",
                     fit: BoxFit.cover,
                   )),
-                  
             ),
-              SliverList(
-            delegate: SliverChildListDelegate([
-              ListTile(leading: Icon(Icons.volume_off), title: Text("Volume Off"),),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-
-            ]),
-          )
+            SliverList(
+              delegate: SliverChildListDelegate([
+                ListTile(
+                  leading: Icon(Icons.volume_off),
+                  title: Text("Volume Off"),
+                ),
+                ListTile(
+                    leading: Icon(Icons.volume_down),
+                    title: Text("Volume Down")),
+                ListTile(
+                    leading: Icon(Icons.volume_mute),
+                    title: Text("Volume Mute")),
+                ListTile(
+                    leading: Icon(Icons.volume_mute),
+                    title: Text("Volume Mute")),
+                ListTile(
+                    leading: Icon(Icons.volume_mute),
+                    title: Text("Volume Mute")),
+                ListTile(
+                    leading: Icon(Icons.volume_mute),
+                    title: Text("Volume Mute")),
+                ListTile(
+                    leading: Icon(Icons.volume_mute),
+                    title: Text("Volume Mute")),
+                ListTile(
+                    leading: Icon(Icons.volume_mute),
+                    title: Text("Volume Mute")),
+                ListTile(
+                    leading: Icon(Icons.volume_mute),
+                    title: Text("Volume Mute")),
+                ListTile(
+                    leading: Icon(Icons.volume_mute),
+                    title: Text("Volume Mute")),
+                ListTile(
+                    leading: Icon(Icons.volume_mute),
+                    title: Text("Volume Mute")),
+                ListTile(
+                    leading: Icon(Icons.volume_down),
+                    title: Text("Volume Down")),
+                ListTile(
+                    leading: Icon(Icons.volume_down),
+                    title: Text("Volume Down")),
+                ListTile(
+                    leading: Icon(Icons.volume_down),
+                    title: Text("Volume Down")),
+                ListTile(
+                    leading: Icon(Icons.volume_down),
+                    title: Text("Volume Down")),
+                ListTile(
+                    leading: Icon(Icons.volume_down),
+                    title: Text("Volume Down")),
+                ListTile(
+                    leading: Icon(Icons.volume_down),
+                    title: Text("Volume Down")),
+                ListTile(
+                    leading: Icon(Icons.volume_down),
+                    title: Text("Volume Down")),
+                ListTile(
+                    leading: Icon(Icons.volume_down),
+                    title: Text("Volume Down")),
+                ListTile(
+                    leading: Icon(Icons.volume_down),
+                    title: Text("Volume Down")),
+                ListTile(
+                    leading: Icon(Icons.volume_down),
+                    title: Text("Volume Down")),
+                ListTile(
+                    leading: Icon(Icons.volume_down),
+                    title: Text("Volume Down")),
+                ListTile(
+                    leading: Icon(Icons.volume_down),
+                    title: Text("Volume Down")),
+                ListTile(
+                    leading: Icon(Icons.volume_down),
+                    title: Text("Volume Down")),
+                ListTile(
+                    leading: Icon(Icons.volume_down),
+                    title: Text("Volume Down")),
+              ]),
+            )
           ];
         },
         body: Center(
           child: Text("Sample Text"),
         ),
       ),
+      drawer: Menu(),
     );
   }
 }
