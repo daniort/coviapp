@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Menu extends StatelessWidget {
   @override
@@ -53,7 +54,11 @@ class Menu extends StatelessWidget {
                     ),
                     child: ListTile(
                       title: Text('Recomendaciones'),
-                      leading: Icon(Icons.sort),
+                      leading: FaIcon(
+                        FontAwesomeIcons.inbox,
+                        color: Color(0xff19535f),
+                        //size: 30.0,
+                      ),
                     ),
                   ),
                 ),
