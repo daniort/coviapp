@@ -15,7 +15,7 @@ class Menu extends StatelessWidget {
           children: <Widget>[
             Container(
               child: UserAccountsDrawerHeader(
-                accountName: Text("Guillermo García"),
+                accountName: Text("GuillermodddGarcía"),
                 accountEmail: Text("email@prueba.es"),
                 currentAccountPicture:
                     CircleAvatar(backgroundColor: Color(0xfff0f3f5)),

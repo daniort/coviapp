@@ -378,141 +378,108 @@ class _MyHomePageState extends State<MyHomePage> {
           ];
         },
         body: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              //color: Color(0xff0d2a31),
-              color: Colors.white),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Expanded(
-                flex: 2,
-                child: Padding(
-                  padding: EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10.0),
-                        topRight: Radius.circular(10.0),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10.0),
+                    bottomLeft: Radius.circular(10.0)),
+                color: Colors.white),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding:
+                        EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10.0),
+                          topRight: Radius.circular(10.0),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Expanded(
-                flex: 15,
-                child: Container(
-                  width: ((MediaQuery.of(context).size.width)),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      Expanded(
-                          flex: 1,
-                          child: Row(
-                            children: <Widget>[
-                              Container(
-                                width:
-                                    ((MediaQuery.of(context).size.width) * .20),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(10.0),
-                                      bottomLeft: Radius.circular(10.0)),
-                                ),
-                                child: Center(
-                                  child: FaIcon(
-                                    FontAwesomeIcons.inbox,
-                                    color: Color(0xff19535f),
-                                    size: 30.0,
+                Expanded(
+                  flex: 15,
+                  child: Container(
+                    width: ((MediaQuery.of(context).size.width)),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      children: <Widget>[
+                        Expanded(
+                            flex: 1,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10.0),
+                                    bottomLeft: Radius.circular(10.0)),
+                              ),
+                              child: Row(
+                                children: <Widget>[
+                                  Container(
+                                    width:
+                                        ((MediaQuery.of(context).size.width) *
+                                            .20),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(10.0),
+                                          bottomLeft: Radius.circular(10.0)),
+                                    ),
+                                    child: Center(
+                                      child: FaIcon(
+                                        FontAwesomeIcons.inbox,
+                                        color: Color(0xff19535f),
+                                        size: 30.0,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Center(
+                                      child: Text('Información Reciente',
+                                          style: GoogleFonts.doHyeon(
+                                              color: Color(0xff19535f),
+                                              fontSize: 20.0)),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Center(
-                                  child: Text('Información Reciente',
-                                      style: GoogleFonts.doHyeon(
-                                          color: Color(0xff19535f),
-                                          fontSize: 20.0)),
-                                ),
+                            )),
+                        Expanded(
+                          flex: 7,
+                          child: Container(
+                            width: ((MediaQuery.of(context).size.width)),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(30.0),
                               ),
-                            ],
-                          )),
-                      Expanded(
-                        flex: 7,
-                        child: Container(
-                          width: ((MediaQuery.of(context).size.width)),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            //color: Color(0xfff0f3f5),
-                            color: Color(0xff19535f),
+                              color: Color(0xff19535f),
+                            ),
+                            child: Center(
+                                child: Text(
+                              'data',
+                              style: TextStyle(color: Colors.white),
+                            )),
                           ),
-                          child: Center(
-                              child: Text(
-                            'data',
-                            style: TextStyle(color: Colors.white),
-                          )),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
+              ],
+            ),
+          )
       ),
       drawer: Menu(),
     );
-  }
-
-  Future res() async {
-    print('hola');
-
-    // Setting placeholder api keys
-    String consumerApiKey = "ABC";
-    String consumerApiSecret = "ABC";
-    String accessToken = "ABC";
-    String accessTokenSecret = "ABC";
-
-    // Creating the twitterApi Object with the secret and public keys
-    // These keys are generated from the twitter developer page
-    // Dont share the keys with anyone
-    final _twitterOauth = new twitterApi(
-        consumerKey: consumerApiKey,
-        consumerSecret: consumerApiSecret,
-        token: accessToken,
-        tokenSecret: accessTokenSecret);
-
-    // Make the request to twitter
-    Future twitterRequest = _twitterOauth.getTwitterRequest(
-      // Http Method
-      "GET",
-      // Endpoint you are trying to reach
-      "statuses/user_timeline.json",
-      // The options for the request
-      options: {
-        "user_id": "19025957",
-        "screen_name": "TTCnotices",
-        "count": "20",
-        "trim_user": "true",
-        "tweet_mode": "extended", // Used to prevent truncating tweets
-      },
-    );
-
-    // Wait for the future to finish
-    var res = await twitterRequest;
-
-    // Print off the response
-    print(res.statusCode);
-    print(res.body);
-
-    // Convert the string response into something more useable
-    var tweets = json.decode(res.body);
-    print(tweets);
   }
 }
