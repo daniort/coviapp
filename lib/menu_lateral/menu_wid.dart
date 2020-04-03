@@ -169,13 +169,13 @@ class Menu extends StatelessWidget {
                       ),
                       child: ListTile(
                           title: Text(
-                            'Enlaces prioritarios',
+                            'Encuesta',
                             style: TextStyle(
                               color: Color(0xfff0f3f5),
                             ),
                           ),
                           leading: FaIcon(
-                            FontAwesomeIcons.mobileAlt,
+                            FontAwesomeIcons.clipboardList,
                             color: Color(0xfff0f3f5),
                             //size: 30.0,
                           )),
@@ -201,13 +201,45 @@ class Menu extends StatelessWidget {
                       ),
                       child: ListTile(
                           title: Text(
-                            'Enlaces prioritarios',
+                            'Registrate',
                             style: TextStyle(
                               color: Color(0xfff0f3f5),
                             ),
                           ),
                           leading: FaIcon(
-                            FontAwesomeIcons.mobileAlt,
+                            FontAwesomeIcons.signInAlt,
+                            color: Color(0xfff0f3f5),
+                            //size: 30.0,
+                          )),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
+                  child: InkWell(
+                    onTap: () => {
+                      Navigator.pop(context),
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Enlaces(),
+                        ),
+                      ),
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border:
+                            Border(top: BorderSide(color: Color(0xff19535f))),
+                      ),
+                      child: ListTile(
+                          title: Text(
+                            'Mas informacion',
+                            style: TextStyle(
+                              color: Color(0xfff0f3f5),
+                            ),
+                          ),
+                          leading: FaIcon(
+                            FontAwesomeIcons.infoCircle,
                             color: Color(0xfff0f3f5),
                             //size: 30.0,
                           )),
