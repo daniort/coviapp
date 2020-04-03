@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -112,40 +113,23 @@ class Noticias extends StatelessWidget {
                           ),
                           Align(
                             alignment: Alignment.bottomCenter,
-                            child: InkWell(
-                              onTap: () => {
-                                showModalBottomSheet(
-                                    //elevation: (queryData.size.height) * 0.8,
-                                    backgroundColor:
-                                        Color.fromRGBO(0, 0, 0, 0.0),
-                                    //shape:
-                                    context: context,
-                                    isScrollControlled: true,
-                                    builder: (context) {
-                                      return ModalNoti();
-                                    }),
+                            child: StreamBuilder<QuerySnapshot>(
+                              stream: Firestore.instance
+                                  .collection('noticias')
+                                  .snapshots(),
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                                if (snapshot.hasError)
+                                  return new Text('Error: ${snapshot.error}');
+                                switch (snapshot.connectionState) {
+                                  case ConnectionState.waiting:
+                                    return new Text('Loading...');
+                                    case ConnectionState.done:
+                                    return new Text('Done...');
+                                  default:
+                                    return new Text('listo...');
+                                }
                               },
-                              child: Container(
-                                height: ((MediaQuery.of(context).size.height) *
-                                    .15),
-                                width: ((MediaQuery.of(context).size.width)),
-                                decoration: BoxDecoration(
-                                  color: Color.fromRGBO(13, 42, 49, 0.90),
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(30.0)),
-                                ),
-                                child: ListTile(
-                                  title: Text(
-                                      'CONFIRMA SECTOR SALUD ESTATAL OTROS TRES CASOS POSITIVOS DE CORONAVIRUS EN ZACATECAS',
-                                      style: GoogleFonts.doHyeon(
-                                          color: Color(0xfff0f3f5),
-                                          fontSize: 17.0)),
-                                  subtitle: Text('Leer Más...',
-                                      style: GoogleFonts.doHyeon(
-                                          color: Color(0xfff0f3f9),
-                                          fontSize: 15.0)),
-                                ),
-                              ),
                             ),
                           )
                         ],
@@ -237,7 +221,7 @@ class ModalNoti extends StatelessWidget {
                   child: Text(
                       "Se presenta una propuesta metodológico-operativa para establecer el modelo de atención de la Cuarta Transformación –Atención Primaria de Salud Integral e Integrado México (APS-I Mx)— en las entidades federativas. Se describe en qué consiste la APS-I y su trayectoria histórica durante cuatro décadas y alinea la actual versión mexicana con el documento de la Comisión de Alto Nivel de la Organización Panamericana de la Salud (OPS). \n\nLos resultados del levantamiento junto con el trabajo del grupo interinstitucional para la transformación del Primer Nivel de Atención (PNA) llevan a proponer el establecimiento de Distritos de Salud (DS) en sustitución de las jurisdicciones sanitarias. \n\nDa clik en la imagen o descárgalo en http://bit.ly/2v7pCVc",
                       textAlign: TextAlign.justify,
-                      style: TextStyle(                        
+                      style: TextStyle(
                         color: Color(0xfff0f3f5),
                         fontSize: 14.0,
                       )),

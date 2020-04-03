@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "916165033345",
+    "firebase_url": "https://covidapp-6b03f.firebaseio.com",
+    "project_id": "covidapp-6b03f",
+    "storage_bucket": "covidapp-6b03f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916165033345:android:a33cc5d733c3cd6b893c80",
+        "android_client_info": {
+          "package_name": "zac.labsol.covi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916165033345-r1e3c4agorgvo5g3vus9fl2es3ktnv30.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjaEQ27R6yNfbUC0qk1EZLwNSJbF_RVmE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916165033345-r1e3c4agorgvo5g3vus9fl2es3ktnv30.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
