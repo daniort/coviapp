@@ -754,6 +754,10 @@ class _SignosState extends State<Signos> {
                                     .08),
                                 decoration: BoxDecoration(
                                   color: Color(0xff0d2a31),
+                                    borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(10.0),
+                                
+                              ),
                                 ),
                                 child: Center(
                                   child: FaIcon(
