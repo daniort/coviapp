@@ -382,121 +382,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
-<<<<<<< HEAD
-                ),
               ]),
             )
           ];
         },
         body: Noticias(),
       ),
-=======
-                ]),
-              )
-            ];
-          },
-          body: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10.0),
-                    bottomLeft: Radius.circular(10.0)),
-                color: Colors.white),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Expanded(
-                  flex: 2,
-                  child: Padding(
-                    padding:
-                        EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10.0),
-                          topRight: Radius.circular(10.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 15,
-                  child: Container(
-                    width: ((MediaQuery.of(context).size.width)),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      children: <Widget>[
-                        Expanded(
-                            flex: 1,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10.0),
-                                    bottomLeft: Radius.circular(10.0)),
-                              ),
-                              child: Row(
-                                children: <Widget>[
-                                  Container(
-                                    width:
-                                        ((MediaQuery.of(context).size.width) *
-                                            .20),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(10.0),
-                                          bottomLeft: Radius.circular(10.0)),
-                                    ),
-                                    child: Center(
-                                      child: FaIcon(
-                                        FontAwesomeIcons.inbox,
-                                        color: Color(0xff19535f),
-                                        size: 30.0,
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Center(
-                                      child: Text('Información Reciente',
-                                          style: GoogleFonts.doHyeon(
-                                              color: Color(0xff19535f),
-                                              fontSize: 20.0)),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )),
-                        Expanded(
-                          flex: 7,
-                          child: Container(
-                            width: ((MediaQuery.of(context).size.width)),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(30.0),
-                              ),
-                              color: Color(0xff19535f),
-                            ),
-                            child: Center(
-                                child: Text(
-                              'data',
-                              style: TextStyle(color: Colors.white),
-                            )),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          )),
->>>>>>> 2a1617b0ca4a29dca4d15da7610f23e58fa6a6e6
       drawer: Menu(),
     );
   }
