@@ -1,11 +1,20 @@
+import 'package:carousel_pro/carousel_pro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Noticias extends StatelessWidget {
+class Noticias extends StatefulWidget {
+  @override
+  _NoticiasState createState() => _NoticiasState();
+}
+
+class _NoticiasState extends State<Noticias> {
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData;
+    queryData = MediaQuery.of(context);
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -91,48 +100,249 @@ class Noticias extends StatelessWidget {
                         ),
                         color: Color(0xff19535f),
                       ),
-                      child: Stack(
-                        children: <Widget>[
-                          Container(
-                            height: ((MediaQuery.of(context).size.height)),
-                            width: ((MediaQuery.of(context).size.width)),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(30.0)),
-                            ),
-                            child: FittedBox(
-                              fit: BoxFit.fill,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(200.0)),
-                                child: Image.network(
-                                  'https://www.gob.mx/cms/uploads/image/file/571435/Documento-Definitivo-Distritos-de-Salud-_1_-1.jpg',
-                                ),
-                              ),
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: StreamBuilder<QuerySnapshot>(
-                              stream: Firestore.instance
-                                  .collection('noticias')
-                                  .snapshots(),
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<QuerySnapshot> snapshot) {
-                                if (snapshot.hasError)
-                                  return new Text('Error: ${snapshot.error}');
-                                switch (snapshot.connectionState) {
-                                  case ConnectionState.waiting:
-                                    return new Text('Loading...');
-                                    case ConnectionState.done:
-                                    return new Text('Done...');
-                                  default:
-                                    return new Text('listo...');
-                                }
-                              },
-                            ),
-                          )
-                        ],
+                      child: StreamBuilder<QuerySnapshot>(
+                        stream: Firestore.instance
+                            .collection('noticias')
+                            .snapshots(),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<QuerySnapshot> snapshot) {
+                          if (snapshot.hasError)
+                            return Text('Error: ${snapshot.error}');
+                          if (snapshot.connectionState ==
+                              ConnectionState.active) {
+                            List<DocumentSnapshot> docs =
+                                snapshot.data.documents;
+
+                            return Carousel(
+                              dotBgColor: Color(0xff0d2a31),
+                              animationDuration:
+                                  const Duration(milliseconds: 2050),
+                              images: [
+                                for (var item in docs)
+                                  Stack(
+                                    children: <Widget>[
+                                      new Container(
+                                        height: ((MediaQuery.of(context)
+                                            .size
+                                            .height)),
+                                        width: ((MediaQuery.of(context)
+                                            .size
+                                            .width)),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(30.0)),
+                                        ),
+                                        child: FittedBox(
+                                          fit: BoxFit.fitHeight,
+                                          child: ClipRRect(
+                                            child: FutureBuilder(
+                                              future: getImage(
+                                                  context, item['imagen']),
+                                              builder: (context, snapshot) {
+                                                if (snapshot.connectionState ==
+                                                    ConnectionState.done)
+                                                  return snapshot.data;
+                                                if (snapshot.connectionState ==
+                                                    ConnectionState.waiting)
+                                                  return Image.asset("lib/assets/images/3664282.png");
+                                                return CircularProgressIndicator();
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Align(
+                                        alignment: Alignment.bottomCenter,
+                                        child: new InkWell(
+                                          onTap: () => {
+                                            showModalBottomSheet(
+                                                backgroundColor: Color.fromRGBO(
+                                                    0, 0, 0, 0.0),
+                                                context: context,
+                                                isScrollControlled: true,
+                                                builder: (context) {
+                                                  var _t = item['titulo'] + " ";
+                                                  var _s = item['subtitulo'] + " ";
+                                                  var _f = item['fecha'] + " ";
+                                                  var _c = item['cuerpo'] + " ";
+                                                  return Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                              topRight: Radius
+                                                                  .circular(
+                                                                      30.0)),
+                                                      color: Color.fromRGBO(
+                                                          13, 42, 49, 0.99),
+                                                    ),
+                                                    width: queryData.size.width,
+                                                    height:
+                                                        ((MediaQuery.of(context)
+                                                                .size
+                                                                .height) *
+                                                            0.78),
+                                                    child:
+                                                        SingleChildScrollView(
+                                                      child: Column(
+                                                        children: <Widget>[
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 8.0,
+                                                                    top: 8.0),
+                                                            child: Align(
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              child: Container(
+                                                                width: ((MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width) *
+                                                                    0.90),
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius.only(
+                                                                          topRight:
+                                                                              Radius.circular(30.0)),
+                                                                ),
+                                                                child: Text(
+                                                                    "$_t",
+                                                                    style: GoogleFonts.doHyeon(
+                                                                        color: Color(
+                                                                            0xfff0f3f5),
+                                                                        fontSize:
+                                                                            17.0)),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 8.0),
+                                                            child: Align(
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              child: Container(
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius.only(
+                                                                          topRight:
+                                                                              Radius.circular(30.0)),
+                                                                ),
+                                                                child: Text(
+                                                                    '$_s',
+                                                                    style: GoogleFonts.doHyeon(
+                                                                        color: Color(
+                                                                            0xfff0f3f5),
+                                                                        fontSize:
+                                                                            15.0)),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 8.0),
+                                                            child: Align(
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              child: Container(
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius.only(
+                                                                          topRight:
+                                                                              Radius.circular(30.0)),
+                                                                ),
+                                                                child: Text(
+                                                                    'Publicado: $_f',
+                                                                    style: TextStyle(
+                                                                        color: Color(
+                                                                            0xfff0f3f5),
+                                                                        fontSize:
+                                                                            10.0)),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 10.0,
+                                                                    top: 8.0,
+                                                                    right:
+                                                                        10.0),
+                                                            child: Align(
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              child: Container(
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius.only(
+                                                                          topRight:
+                                                                              Radius.circular(30.0)),
+                                                                ),
+                                                                child: Text(
+                                                                    '$_c',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .justify,
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: Color(
+                                                                          0xfff0f3f5),
+                                                                      fontSize:
+                                                                          14.0,
+                                                                    )),
+                                                              ),
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  );
+                                                }),
+                                          },
+                                          child: Container(
+                                            height: ((MediaQuery.of(context)
+                                                    .size
+                                                    .height) *
+                                                .23),
+                                            width: ((MediaQuery.of(context)
+                                                .size
+                                                .width)),
+                                            decoration: BoxDecoration(
+                                              color: Color.fromRGBO(
+                                                  13, 42, 49, 0.90),
+                                              borderRadius: BorderRadius.only(
+                                                  topRight:
+                                                      Radius.circular(30.0)),
+                                            ),
+                                            child: ListTile(
+                                              title: Text(item['titulo'],
+                                                  style: GoogleFonts.doHyeon(
+                                                      color: Color(0xfff0f3f5),
+                                                      fontSize: 17.0)),
+                                              subtitle: Text('Leer Más...',
+                                                  style: GoogleFonts.doHyeon(
+                                                      color: Color(0xfff0f3f9),
+                                                      fontSize: 15.0)),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                              ],
+                            );
+                          }
+                        },
                       ),
                     ),
                   ),
@@ -146,91 +356,26 @@ class Noticias extends StatelessWidget {
   }
 }
 
-class ModalNoti extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    MediaQueryData queryData;
-    queryData = MediaQuery.of(context);
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(topRight: Radius.circular(30.0)),
-        color: Color.fromRGBO(13, 42, 49, 0.99),
-      ),
-      //color: Colors.amber),
-      width: queryData.size.width,
-      height: ((MediaQuery.of(context).size.height) * 0.78),
-      child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0, top: 8.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Container(
-                  width: ((MediaQuery.of(context).size.width) * 0.90),
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.only(topRight: Radius.circular(30.0)),
-                  ),
-                  child: Text(
-                      'CONFIRMA SECTOR SALUD ESTATAL OTROS TRES CASOS POSITIVOS DE CORONAVIRUS EN ZACATECAS',
-                      style: GoogleFonts.doHyeon(
-                          color: Color(0xfff0f3f5), fontSize: 17.0)),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.only(topRight: Radius.circular(30.0)),
-                  ),
-                  child: Text('La propuesta metodológica y operativa',
-                      style: GoogleFonts.doHyeon(
-                          color: Color(0xfff0f3f5), fontSize: 15.0)),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.only(topRight: Radius.circular(30.0)),
-                  ),
-                  child: Text('Publicado: 12/04/2020',
-                      style:
-                          TextStyle(color: Color(0xfff0f3f5), fontSize: 10.0)),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0, top: 8.0, right: 10.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.only(topRight: Radius.circular(30.0)),
-                  ),
-                  child: Text(
-                      "Se presenta una propuesta metodológico-operativa para establecer el modelo de atención de la Cuarta Transformación –Atención Primaria de Salud Integral e Integrado México (APS-I Mx)— en las entidades federativas. Se describe en qué consiste la APS-I y su trayectoria histórica durante cuatro décadas y alinea la actual versión mexicana con el documento de la Comisión de Alto Nivel de la Organización Panamericana de la Salud (OPS). \n\nLos resultados del levantamiento junto con el trabajo del grupo interinstitucional para la transformación del Primer Nivel de Atención (PNA) llevan a proponer el establecimiento de Distritos de Salud (DS) en sustitución de las jurisdicciones sanitarias. \n\nDa clik en la imagen o descárgalo en http://bit.ly/2v7pCVc",
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                        color: Color(0xfff0f3f5),
-                        fontSize: 14.0,
-                      )),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
+Future<Widget> getImage(BuildContext context, String item) async {
+  Image m;
+  print(item);
+  if (item != null) {
+    var path = "noticias/$item";
+    print(path);
+    final ref = FirebaseStorage.instance.ref().child('$path');
+    var url = await ref.getDownloadURL();
+    print(url);
+    m = Image.network(url.toString());
+  } else {
+    m = Image.asset("lib/assets/images/3664282.png");
+  }
+  return m;
+}
+
+class FireStorageService extends ChangeNotifier {
+  FireStorageService._();
+  FireStorageService();
+  static Future<dynamic> loadImage(BuildContext context, String image) {
+    throw ("Platform not found");
   }
 }
