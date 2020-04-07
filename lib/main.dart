@@ -3,6 +3,7 @@ import 'package:covi/menu_lateral/menu_wid.dart';
 import 'package:covi/wid_factores/boyd.dart';
 import 'package:covi/wid_factores/enlaces.dart';
 import 'package:covi/wid_factores/factores.dart';
+import 'package:covi/wid_factores/form.dart';
 import 'package:covi/wid_factores/recomendaciones.dart';
 import 'package:covi/wid_factores/signos.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Factores(),
+                            builder: (context) => Encuesta(),
                           ),
                         ),
                       },
@@ -101,9 +102,88 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               child: Center(
                                 child: FaIcon(
-                                  FontAwesomeIcons.exclamation,
+                                  FontAwesomeIcons.list,
                                   color: Color(0xfff0f3f5),
                                   size: 50.0,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width:
+                                  ((MediaQuery.of(context).size.width) * .60),
+                              child: Center(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Align(
+                                      alignment: Alignment.topLeft,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(left: 10.0),
+                                        child: Text('Encuesta',
+                                            style: GoogleFonts.doHyeon(
+                                                color: Color(0xff0d2a31),
+                                                fontSize: 20.0)),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 10.0),
+                                      child: Text(
+                                        'Contesta una encuesta para poder tener una idea de nuestro habitantes',
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          color: Color(0xff0b7a75),
+                                          fontSize: 12.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: InkWell(
+                      onTap: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Factores(),
+                          ),
+                        ),
+                      },
+                      child: Container(
+                        height: ((MediaQuery.of(context).size.height) * .10),
+                        width: ((MediaQuery.of(context).size.width)),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            colors: [Color(0xfff0f3f5), Color(0xffffffff)],
+                          ),
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              width:
+                                  ((MediaQuery.of(context).size.width) * .20),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10.0),
+                                    bottomLeft: Radius.circular(10.0)),
+                                color: Color(0xff0d2a31),
+                              ),
+                              child: Center(
+                                child: FaIcon(
+                                  FontAwesomeIcons.exclamation,
+                                  color: Color(0xfff0f3f5),
+                                  size: 30.0,
                                 ),
                               ),
                             ),
@@ -122,7 +202,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         child: Text('Factores de Riesgo',
                                             style: GoogleFonts.doHyeon(
                                                 color: Color(0xff0d2a31),
-                                                fontSize: 20.0)),
+                                                fontSize: 18.0)),
                                       ),
                                     ),
                                     Padding(
@@ -157,7 +237,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       },
                       child: Container(
-                        height: ((MediaQuery.of(context).size.height) * .15),
+                        height: ((MediaQuery.of(context).size.height) * .10),
                         width: ((MediaQuery.of(context).size.width)),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -182,7 +262,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 child: FaIcon(
                                   FontAwesomeIcons.headSideVirus,
                                   color: Color(0xfff0f3f5),
-                                  size: 50.0,
+                                  size: 30.0,
                                 ),
                               ),
                             ),
@@ -201,7 +281,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         child: Text('Signos y Síntomas',
                                             style: GoogleFonts.doHyeon(
                                                 color: Color(0xff0d2a31),
-                                                fontSize: 20.0)),
+                                                fontSize: 18.0)),
                                       ),
                                     ),
                                     Padding(
@@ -236,7 +316,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       },
                       child: Container(
-                        height: ((MediaQuery.of(context).size.height) * .15),
+                        height: ((MediaQuery.of(context).size.height) * .10),
                         width: ((MediaQuery.of(context).size.width)),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -261,7 +341,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 child: FaIcon(
                                   FontAwesomeIcons.stream,
                                   color: Color(0xfff0f3f5),
-                                  size: 50.0,
+                                  size: 30.0,
                                 ),
                               ),
                             ),
@@ -280,7 +360,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         child: Text('Recomendaciones',
                                             style: GoogleFonts.doHyeon(
                                                 color: Color(0xff0d2a31),
-                                                fontSize: 20.0)),
+                                                fontSize: 18.0)),
                                       ),
                                     ),
                                     Padding(
@@ -315,7 +395,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       },
                       child: Container(
-                        height: ((MediaQuery.of(context).size.height) * .15),
+                        height: ((MediaQuery.of(context).size.height) * .10),
                         width: ((MediaQuery.of(context).size.width)),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -340,7 +420,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 child: FaIcon(
                                   FontAwesomeIcons.mobileAlt,
                                   color: Color(0xfff0f3f5),
-                                  size: 50.0,
+                                  size: 30.0,
                                 ),
                               ),
                             ),
@@ -359,7 +439,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         child: Text('Enlaces Prioritarios',
                                             style: GoogleFonts.doHyeon(
                                                 color: Color(0xff0d2a31),
-                                                fontSize: 20.0)),
+                                                fontSize: 18.0)),
                                       ),
                                     ),
                                     Padding(

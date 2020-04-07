@@ -9,11 +9,11 @@ class Encuesta extends StatefulWidget {
   _EncuestaState createState() => _EncuestaState();
 }
 
+final _scaffoldKey = GlobalKey<ScaffoldState>();
 TextEditingController _controllerNombre;
 TextEditingController _controllerEdad;
 TextEditingController _controllerOtro;
 String sex;
-
 bool check_cancer = false;
 bool check_cardi = false;
 bool check_diabetes = false;
@@ -21,7 +21,6 @@ bool check_gesta = false;
 bool check_embara = false;
 bool check_pulm = false;
 bool check_vih = false;
-//***++++++++ */
 bool check_toracico = false;
 bool check_respirato = false;
 bool check_fiebre = false;
@@ -32,8 +31,6 @@ bool check_articulaciones = false;
 bool check_garganta = false;
 bool check_moco = false;
 bool check_ojos = false;
-
-///***// */
 bool viaje = false;
 bool reunion = false;
 
@@ -48,6 +45,7 @@ class _EncuestaState extends State<Encuesta> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Color(0xff19535f),
       appBar: AppBar(
         title: Text('Encuestas'),
@@ -807,35 +805,72 @@ class _EncuestaState extends State<Encuesta> {
                         } else {
                           _otro = "null";
                         }
-                        Firestore.instance
-                            .collection('encuestas')
-                            .document()
-                            .setData({
-                          'nombre': '$_name',
-                          'edad': '$_edad',
-                          'sexo': '$sex',
-                          'check_cancer': check_cancer,
-                          'check_cardi': check_cardi,
-                          'check_diabetes': check_diabetes,
-                          'check_gesta': check_gesta,
-                          'check_embara': check_embara,
-                          'check_pulm': check_pulm,
-                          'check_vih': check_vih,
-                          'otro': '$_otro',
-                          'check_toracico': check_toracico,
-                          'check_respirato': check_respirato,
-                          'check_fiebre': check_fiebre,
-                          'check_cabeza': check_cabeza,
-                          'check_tos': check_tos,
-                          'check_muscular': check_muscular,
-                          'check_articulaciones': check_articulaciones,
-                          'check_garganta': check_garganta,
-                          'check_moco': check_moco,
-                          'check_ojos': check_ojos,
-                          'viaje': viaje,
-                          'reunion': reunion,
-                        });
                         print('Agregado');
+                        _scaffoldKey.currentState.showSnackBar(SnackBar(
+                          content: Text('Presiona para Confirmar:'),
+                          duration: Duration(milliseconds: 3000),
+                          backgroundColor: Color(0xff92140c),
+                          action: SnackBarAction(
+                            label: 'Confirmar',
+                            textColor: Color(0xffffffff),
+
+                            //textColor: Colors.white,
+                            onPressed: () {
+                              Firestore.instance
+                                  .collection('encuestas')
+                                  .document()
+                                  .setData({
+                                'nombre': '$_name',
+                                'edad': '$_edad',
+                                'sexo': '$sex',
+                                'check_cancer': check_cancer,
+                                'check_cardi': check_cardi,
+                                'check_diabetes': check_diabetes,
+                                'check_gesta': check_gesta,
+                                'check_embara': check_embara,
+                                'check_pulm': check_pulm,
+                                'check_vih': check_vih,
+                                'otro': '$_otro',
+                                'check_toracico': check_toracico,
+                                'check_respirato': check_respirato,
+                                'check_fiebre': check_fiebre,
+                                'check_cabeza': check_cabeza,
+                                'check_tos': check_tos,
+                                'check_muscular': check_muscular,
+                                'check_articulaciones': check_articulaciones,
+                                'check_garganta': check_garganta,
+                                'check_moco': check_moco,
+                                'check_ojos': check_ojos,
+                                'viaje': viaje,
+                                'reunion': reunion,
+                              });
+
+                              print('Limpiando');
+                              check_cancer = false;
+                              check_cardi = false;
+                              check_diabetes = false;
+                              check_gesta = false;
+                              check_embara = false;
+                              check_pulm = false;
+                              check_vih = false;
+                              check_toracico = false;
+                              check_respirato = false;
+                              check_fiebre = false;
+                              check_cabeza = false;
+                              check_tos = false;
+                              check_muscular = false;
+                              check_articulaciones = false;
+                              check_garganta = false;
+                              check_moco = false;
+                              check_ojos = false;
+                              viaje = false;
+                              reunion = false;
+                              _controllerNombre.clear();
+                              _controllerOtro.clear();
+                              _controllerEdad.clear();
+                            },
+                          ),
+                        ));
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width,
