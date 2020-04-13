@@ -1,8 +1,12 @@
+import 'package:covi/main.dart';
+import 'package:covi/wid_factores/warnin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Encuesta extends StatefulWidget {
   @override
@@ -813,8 +817,6 @@ class _EncuestaState extends State<Encuesta> {
                           action: SnackBarAction(
                             label: 'Confirmar',
                             textColor: Color(0xffffffff),
-
-                            //textColor: Colors.white,
                             onPressed: () {
                               Firestore.instance
                                   .collection('encuestas')
@@ -844,6 +846,76 @@ class _EncuestaState extends State<Encuesta> {
                                 'viaje': viaje,
                                 'reunion': reunion,
                               });
+                              int _fiebretoscabeza = 0;
+                              int _unode = 0;
+                              int _viaje = 0;
+
+                              if (check_respirato || check_toracico) {
+                                print('urgencias papu');
+                                showModalBottomSheet(
+                                    backgroundColor: Color.fromRGBO(0, 0, 0, 0),
+                                    context: context,
+                                    isScrollControlled: true,
+                                    builder: (context) {
+                                      return Urgencias();
+                                    });
+                              } else {
+                                if (check_fiebre) _fiebretoscabeza++;
+                                if (check_cabeza) _fiebretoscabeza++;
+                                if (check_tos) _fiebretoscabeza++;
+                                if (check_muscular) _unode++;
+                                if (check_articulaciones) _unode++;
+                                if (check_garganta) _unode++;
+                                if (check_moco) _unode++;
+                                if (check_ojos) _unode++;
+                                if (viaje) _viaje++;
+                                if (reunion) _viaje++;
+                                if (_fiebretoscabeza >= 2) {
+                                  if (_unode >= 1) {
+                                    if (_viaje >= 1) {
+                                      print('Caso Sospechoso');
+                                      showModalBottomSheet(
+                                          backgroundColor:
+                                              Color.fromRGBO(0, 0, 0, 0),
+                                          context: context,
+                                          isScrollControlled: true,
+                                          builder: (context) {
+                                            return Sospecha();
+                                          });
+                                    } else {
+                                      print('caso sospechoso');
+                                      showModalBottomSheet(
+                                          backgroundColor:
+                                              Color.fromRGBO(0, 0, 0, 0),
+                                          context: context,
+                                          isScrollControlled: true,
+                                          builder: (context) {
+                                            return Sospecha();
+                                          });
+                                    }
+                                  } else {
+                                    print('Cuidate');
+                                    showModalBottomSheet(
+                                          backgroundColor:
+                                              Color.fromRGBO(0, 0, 0, 0),
+                                          context: context,
+                                          isScrollControlled: true,
+                                          builder: (context) {
+                                            return Warnin();
+                                          });
+                                  }
+                                } else {
+                                  print('Cuidate');
+                                  showModalBottomSheet(
+                                          backgroundColor:
+                                              Color.fromRGBO(0, 0, 0, 0),
+                                          context: context,
+                                          isScrollControlled: true,
+                                          builder: (context) {
+                                            return Warnin();
+                                          });
+                                }
+                              }
 
                               print('Limpiando');
                               check_cancer = false;
@@ -911,3 +983,4 @@ class _EncuestaState extends State<Encuesta> {
     );
   }
 }
+
