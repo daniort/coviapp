@@ -1,12 +1,24 @@
+import 'package:covi/bloc/login_bloc/bloc.dart';
+import 'package:covi/bloc/login_form.dart';
+import 'package:covi/bloc/registro/eserepo.dart';
+import 'package:covi/menu_lateral/login.dart';
 import 'package:covi/wid_factores/enlaces.dart';
 import 'package:covi/wid_factores/factores.dart';
 import 'package:covi/wid_factores/form.dart';
 import 'package:covi/wid_factores/recomendaciones.dart';
 import 'package:covi/wid_factores/signos.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Menu extends StatelessWidget {
+  final UserRepository _userRepository;
+
+  Menu({Key key, @required UserRepository userRepository})
+      : assert(userRepository != null),
+        _userRepository = userRepository,
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -16,8 +28,8 @@ class Menu extends StatelessWidget {
           children: <Widget>[
             Container(
               child: UserAccountsDrawerHeader(
-                accountName: Text("GuillermodddGarcía"),
-                accountEmail: Text("email@prueba.es"),
+                accountName: Text("Bienvenida"),
+                accountEmail: Text("A nuestra aplicacion"),
                 currentAccountPicture:
                     CircleAvatar(backgroundColor: Color(0xfff0f3f5)),
               ),
@@ -191,7 +203,8 @@ class Menu extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Enlaces(),
+                          builder: (context) =>
+                              App(userRepository: _userRepository),
                         ),
                       ),
                     },
@@ -251,6 +264,28 @@ class Menu extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class LoginScreen extends StatelessWidget {
+  final UserRepository _userRepository;
+
+  LoginScreen({Key key, @required UserRepository userRepository})
+      : assert(userRepository != null),
+        _userRepository = userRepository,
+        super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Login'),
+      ),
+      body: BlocProvider<LoginBloc>(
+        create: (context) => LoginBloc(userRepository: _userRepository),
+        child: LoginForm(userRepository: _userRepository),
       ),
     );
   }

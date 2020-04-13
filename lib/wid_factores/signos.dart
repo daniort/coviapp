@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class Signos extends StatefulWidget {
   @override
@@ -486,7 +485,7 @@ class _SignosState extends State<Signos> {
                               )
                             ],
                           ),
-                           Row(
+                          Row(
                             children: <Widget>[
                               Container(
                                 width:
@@ -518,7 +517,8 @@ class _SignosState extends State<Signos> {
                                             style: GoogleFonts.doHyeon(
                                                 color: Color(0xff0d2a31),
                                                 fontSize: 18.0)),
-                                        subtitle: Text('Dolor en articulaciones.',
+                                        subtitle: Text(
+                                            'Dolor en articulaciones.',
                                             style: TextStyle(
                                                 color: Color(0xff0d2a31),
                                                 fontSize: 16.0)),
@@ -529,7 +529,7 @@ class _SignosState extends State<Signos> {
                               )
                             ],
                           ),
-                           Row(
+                          Row(
                             children: <Widget>[
                               Container(
                                 width:
@@ -561,7 +561,8 @@ class _SignosState extends State<Signos> {
                                             style: GoogleFonts.doHyeon(
                                                 color: Color(0xff0d2a31),
                                                 fontSize: 18.0)),
-                                        subtitle: Text('Dolor/ardor de garganta.',
+                                        subtitle: Text(
+                                            'Dolor/ardor de garganta.',
                                             style: TextStyle(
                                                 color: Color(0xff0d2a31),
                                                 fontSize: 16.0)),
@@ -572,7 +573,7 @@ class _SignosState extends State<Signos> {
                               )
                             ],
                           ),
-                           Row(
+                          Row(
                             children: <Widget>[
                               Container(
                                 width:
@@ -615,7 +616,7 @@ class _SignosState extends State<Signos> {
                               )
                             ],
                           ),
-                           Row(
+                          Row(
                             children: <Widget>[
                               Container(
                                 width:
@@ -658,7 +659,7 @@ class _SignosState extends State<Signos> {
                               )
                             ],
                           ),
-                           Row(
+                          Row(
                             children: <Widget>[
                               Container(
                                 width:
@@ -733,11 +734,11 @@ class _SignosState extends State<Signos> {
                                   child: Stack(
                                     children: <Widget>[
                                       ListTile(
-                                        title: Text('Viaje o estancia a países con transmisión local comunitaria de COVID-19.',
+                                        title: Text(
+                                            'Viaje o estancia a países con transmisión local comunitaria de COVID-19.',
                                             style: TextStyle(
                                                 color: Color(0xff0d2a31),
                                                 fontSize: 14.0)),
-                                     
                                       ),
                                     ],
                                   ),
@@ -745,7 +746,7 @@ class _SignosState extends State<Signos> {
                               )
                             ],
                           ),
-                            Row(
+                          Row(
                             children: <Widget>[
                               Container(
                                 width:
@@ -754,10 +755,9 @@ class _SignosState extends State<Signos> {
                                     .08),
                                 decoration: BoxDecoration(
                                   color: Color(0xff0d2a31),
-                                    borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(10.0),
-                                
-                              ),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(10.0),
+                                  ),
                                 ),
                                 child: Center(
                                   child: FaIcon(
@@ -773,16 +773,15 @@ class _SignosState extends State<Signos> {
                                 height: ((MediaQuery.of(context).size.height) *
                                     .08),
                                 color: Color(0xfff0f3f5),
-                                
                                 child: Center(
                                   child: Stack(
                                     children: <Widget>[
                                       ListTile(
-                                        title: Text('Haber estado en contacto con un caso confirmado o bajo investigación a COVID-19.',
+                                        title: Text(
+                                            'Haber estado en contacto con un caso confirmado o bajo investigación a COVID-19.',
                                             style: TextStyle(
                                                 color: Color(0xff0d2a31),
                                                 fontSize: 14.0)),
-                                     
                                       ),
                                     ],
                                   ),

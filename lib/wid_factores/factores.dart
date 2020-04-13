@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class Factores extends StatefulWidget {
   @override
@@ -20,8 +18,8 @@ class _FactoresState extends State<Factores> {
       body: Container(
         child: Center(
             child: SingleChildScrollView(
-                          child: Column(
-          children: <Widget>[
+          child: Column(
+            children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(
@@ -370,7 +368,7 @@ class _FactoresState extends State<Factores> {
                   ),
                 ),
               ),
-               Padding(
+              Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(
                   child: Container(
@@ -428,7 +426,7 @@ class _FactoresState extends State<Factores> {
                   ),
                 ),
               ),
-               Padding(
+              Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(
                   child: Container(
@@ -486,9 +484,9 @@ class _FactoresState extends State<Factores> {
                   ),
                 ),
               ),
-          ],
-        ),
-            )),
+            ],
+          ),
+        )),
       ),
     );
   }
