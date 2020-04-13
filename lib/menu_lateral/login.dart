@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:covi/menu_lateral/continuar.dart';
 import 'package:covi/menu_lateral/menu_wid.dart';
 import 'package:covi/bloc/registro/eserepo.dart';
+import 'package:covi/wid_factores/form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -39,10 +40,11 @@ class App extends StatelessWidget {
             );
           }
           if (state is Autenticado) {
-            return HomeScreen(
-              name: state.displayName,
-              userRepository: _userRepository,
-            );
+            return Encuesta();
+            //HomeScreen(
+            //name: state.displayName,
+            //userRepository: _userRepository,
+            //);
           }
           if (state is NoAutenticado) {
             return LoginScreen(

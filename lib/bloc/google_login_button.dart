@@ -1,5 +1,6 @@
 import 'package:covi/main.dart';
 import 'package:covi/bloc/registro/eserepo.dart';
+import 'package:covi/wid_factores/form.dart';
 import 'package:flutter/material.dart';
 
 class Cancelar extends StatelessWidget {
@@ -19,9 +20,9 @@ class Cancelar extends StatelessWidget {
           Navigator.pop(context),
           Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) => MyApp(userRepository: _userRepository),
-            ),
+            MaterialPageRoute(builder: (context) => Encuesta()
+                //MyApp(userRepository: _userRepository),
+                ),
           ),
         },
         child: Container(

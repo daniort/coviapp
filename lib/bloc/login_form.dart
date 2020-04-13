@@ -44,102 +44,103 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginBloc, LoginState>(listener: (context, state) {
-      // tres casos, tres if:
-      if (state.isFailure) {
-        Scaffold.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(
-            SnackBar(
+    MediaQueryData queryData;
+    queryData = MediaQuery.of(context);
+    return Container(
+      child: BlocListener<LoginBloc, LoginState>(listener: (context, state) {
+        // tres casos, tres if:
+        if (state.isFailure) {
+          Scaffold.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                content: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [Text('Login Failure'), Icon(Icons.error)],
+                ),
+                backgroundColor: Colors.red,
+              ),
+            );
+        }
+        if (state.isSubmitting) {
+          Scaffold.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(SnackBar(
               content: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [Text('Login Failure'), Icon(Icons.error)],
+                children: <Widget>[
+                  Text('Logging in... '),
+                  CircularProgressIndicator(),
+                ],
               ),
-              backgroundColor: Colors.red,
+            ));
+        }
+        if (state.isSuccess) {
+          BlocProvider.of<AuthenticationBloc>(context).add(LoggedIn());
+        }
+      }, child: BlocBuilder<LoginBloc, LoginState>(
+        builder: (context, state) {
+          return Container(
+            child: Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Form(
+                child: ListView(
+                  children: <Widget>[
+                    TextFormField(
+                      controller: _emailController,
+                      decoration: InputDecoration(
+                          icon: Icon(Icons.email), labelText: 'Email'),
+                      keyboardType: TextInputType.emailAddress,
+                      autovalidate: true,
+                      autocorrect: false,
+                      validator: (_) {
+                        return !state.isEmailValid ? 'Invalid Email' : null;
+                      },
+                    ),
+                    TextFormField(
+                      controller: _passwordController,
+                      decoration: InputDecoration(
+                          icon: Icon(Icons.lock), labelText: 'Password'),
+                      obscureText: true,
+                      autovalidate: true,
+                      autocorrect: false,
+                      validator: (_) {
+                        return !state.isPasswordValid
+                            ? 'Invalid Password'
+                            : null;
+                      },
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          // Tres botones:
+                          // LoginButton
+                          LoginButton(
+                            onPressed: isLoginButtonEnabled(state)
+                                ? _onFormSubmitted
+                                : null,
+                          ),
+                          // GoogleLoginButton
+                          Cancelar(
+                            userRepository: _userRepository,
+                          ),
+                          // CreateAccountButton
+                          CreateAccountButton(
+                            userRepository: _userRepository,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           );
-      }
-      if (state.isSubmitting) {
-        Scaffold.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(SnackBar(
-            content: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text('Logging in... '),
-                CircularProgressIndicator(),
-              ],
-            ),
-          ));
-      }
-      if (state.isSuccess) {
-        BlocProvider.of<AuthenticationBloc>(context).add(LoggedIn());
-      }
-    }, child: BlocBuilder<LoginBloc, LoginState>(
-      builder: (context, state) {
-        return Padding(
-          padding: EdgeInsets.all(20.0),
-          child: Form(
-            child: ListView(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  child: Image.asset(
-                    'assets/code1.png',
-                    height: 200,
-                  ),
-                ),
-                TextFormField(
-                  controller: _emailController,
-                  decoration: InputDecoration(
-                      icon: Icon(Icons.email), labelText: 'Email'),
-                  keyboardType: TextInputType.emailAddress,
-                  autovalidate: true,
-                  autocorrect: false,
-                  validator: (_) {
-                    return !state.isEmailValid ? 'Invalid Email' : null;
-                  },
-                ),
-                TextFormField(
-                  controller: _passwordController,
-                  decoration: InputDecoration(
-                      icon: Icon(Icons.lock), labelText: 'Password'),
-                  obscureText: true,
-                  autovalidate: true,
-                  autocorrect: false,
-                  validator: (_) {
-                    return !state.isPasswordValid ? 'Invalid Password' : null;
-                  },
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      // Tres botones:
-                      // LoginButton
-                      LoginButton(
-                        onPressed: isLoginButtonEnabled(state)
-                            ? _onFormSubmitted
-                            : null,
-                      ),
-                      // GoogleLoginButton
-                      Cancelar(
-                        userRepository: _userRepository,
-                      ),
-                      // CreateAccountButton
-                      CreateAccountButton(
-                        userRepository: _userRepository,
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-        );
-      },
-    ));
+        },
+      )),
+    );
   }
 
   @override
