@@ -1,3 +1,5 @@
+import 'package:covi/wid_factores/saveImagen.dart';
+import 'package:http/http.dart' as http;
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -133,7 +135,7 @@ class _NoticiasState extends State<Noticias> {
                                               topRight: Radius.circular(30.0)),
                                         ),
                                         child: FittedBox(
-                                          fit: BoxFit.fitHeight,
+                                          fit: BoxFit.contain,
                                           child: ClipRRect(
                                             child: FutureBuilder(
                                               future: getImage(
@@ -144,7 +146,8 @@ class _NoticiasState extends State<Noticias> {
                                                   return snapshot.data;
                                                 if (snapshot.connectionState ==
                                                     ConnectionState.waiting)
-                                                  return Image.asset("lib/assets/images/3664282.png");
+                                                  return Image.asset(
+                                                      "lib/assets/images/3664282.png");
                                                 return CircularProgressIndicator();
                                               },
                                             ),
@@ -162,7 +165,8 @@ class _NoticiasState extends State<Noticias> {
                                                 isScrollControlled: true,
                                                 builder: (context) {
                                                   var _t = item['titulo'] + " ";
-                                                  var _s = item['subtitulo'] + " ";
+                                                  var _s =
+                                                      item['subtitulo'] + " ";
                                                   var _f = item['fecha'] + " ";
                                                   var _c = item['cuerpo'] + " ";
                                                   return Container(
@@ -302,6 +306,54 @@ class _NoticiasState extends State<Noticias> {
                                                                     )),
                                                               ),
                                                             ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 10.0,
+                                                                    top: 8.0,
+                                                                    right:
+                                                                        10.0),
+                                                            child: Align(
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              child: InkWell(
+                                                                onTap: () {
+                                                                  try {
+                                                                    SaveFile()
+                                                                        .save(item[
+                                                                            'imagen']);
+                                                                  } on Error catch (e) {
+                                                                    print(
+                                                                        'Error has occured while saving');
+                                                                    throw 'Error has occured while saving';
+                                                                  }
+                                                                },
+                                                                child:
+                                                                    Container(
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.only(
+                                                                            topRight:
+                                                                                Radius.circular(30.0)),
+                                                                  ),
+                                                                  child: Text(
+                                                                      'Descargar Imagen...',
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .justify,
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: Colors
+                                                                            .blue,
+                                                                        fontSize:
+                                                                            14.0,
+                                                                      )),
+                                                                ),
+                                                              ),
+                                                            ),
                                                           )
                                                         ],
                                                       ),
@@ -354,6 +406,14 @@ class _NoticiasState extends State<Noticias> {
       ),
     );
   }
+}
+
+void _onImageSaveButtonPressed(item) async {
+  print("_onImageSaveButtonPressed");
+  final ref = FirebaseStorage.instance.ref().child("noticias/$item");
+  var url = await ref.getDownloadURL();
+  //var response = await http.get('$url');
+  //await ImageDownloader.downloadImage(url);
 }
 
 Future<Widget> getImage(BuildContext context, String item) async {

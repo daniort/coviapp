@@ -171,6 +171,21 @@ class _EncuestaState extends State<Encuesta> {
                       ],
                     ),
                     Container(
+                      height: ((MediaQuery.of(context).size.height) * .08),
+                      color: Color(0xfff0f3f5),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 15.0),
+                        child: TextField(
+                          controller: _controllerNombre,
+                          decoration:
+                              InputDecoration(hintText: 'Ubicación :'),
+                          inputFormatters: [
+                            BlacklistingTextInputFormatter(RegExp("[0-9]")),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
                       height: ((MediaQuery.of(context).size.height) * .05),
                       width: ((MediaQuery.of(context).size.width)),
                       decoration: BoxDecoration(
@@ -818,40 +833,41 @@ class _EncuestaState extends State<Encuesta> {
                             label: 'Confirmar',
                             textColor: Color(0xffffffff),
                             onPressed: () {
-                              Firestore.instance
-                                  .collection('encuestas')
-                                  .document()
-                                  .setData({
-                                'nombre': '$_name',
-                                'edad': '$_edad',
-                                'sexo': '$sex',
-                                'check_cancer': check_cancer,
-                                'check_cardi': check_cardi,
-                                'check_diabetes': check_diabetes,
-                                'check_gesta': check_gesta,
-                                'check_embara': check_embara,
-                                'check_pulm': check_pulm,
-                                'check_vih': check_vih,
-                                'otro': '$_otro',
-                                'check_toracico': check_toracico,
-                                'check_respirato': check_respirato,
-                                'check_fiebre': check_fiebre,
-                                'check_cabeza': check_cabeza,
-                                'check_tos': check_tos,
-                                'check_muscular': check_muscular,
-                                'check_articulaciones': check_articulaciones,
-                                'check_garganta': check_garganta,
-                                'check_moco': check_moco,
-                                'check_ojos': check_ojos,
-                                'viaje': viaje,
-                                'reunion': reunion,
-                              });
                               int _fiebretoscabeza = 0;
                               int _unode = 0;
                               int _viaje = 0;
 
                               if (check_respirato || check_toracico) {
                                 print('urgencias papu');
+                                Firestore.instance
+                                    .collection('encuestas')
+                                    .document()
+                                    .setData({
+                                  'nombre': '$_name',
+                                  'edad': '$_edad',
+                                  'sexo': '$sex',
+                                  'check_cancer': check_cancer,
+                                  'check_cardi': check_cardi,
+                                  'check_diabetes': check_diabetes,
+                                  'check_gesta': check_gesta,
+                                  'check_embara': check_embara,
+                                  'check_pulm': check_pulm,
+                                  'check_vih': check_vih,
+                                  'otro': '$_otro',
+                                  'check_toracico': check_toracico,
+                                  'check_respirato': check_respirato,
+                                  'check_fiebre': check_fiebre,
+                                  'check_cabeza': check_cabeza,
+                                  'check_tos': check_tos,
+                                  'check_muscular': check_muscular,
+                                  'check_articulaciones': check_articulaciones,
+                                  'check_garganta': check_garganta,
+                                  'check_moco': check_moco,
+                                  'check_ojos': check_ojos,
+                                  'viaje': viaje,
+                                  'reunion': reunion,
+                                  'resultado': 'urgente',
+                                });
                                 showModalBottomSheet(
                                     backgroundColor: Color.fromRGBO(0, 0, 0, 0),
                                     context: context,
@@ -874,6 +890,38 @@ class _EncuestaState extends State<Encuesta> {
                                   if (_unode >= 1) {
                                     if (_viaje >= 1) {
                                       print('Caso Sospechoso');
+                                      Firestore.instance
+                                          .collection('encuestas')
+                                          .document()
+                                          .setData({
+                                            'res': 1,
+                                            'saludo':'hola',
+                                        'nombre': '$_name',
+                                        'edad': '$_edad',
+                                        'sexo': '$sex',
+                                        'check_cancer': check_cancer,
+                                        'check_cardi': check_cardi,
+                                        'check_diabetes': check_diabetes,
+                                        'check_gesta': check_gesta,
+                                        'check_embara': check_embara,
+                                        'check_pulm': check_pulm,
+                                        'check_vih': check_vih,
+                                        'otro': '$_otro',
+                                        'check_toracico': check_toracico,
+                                        'check_respirato': check_respirato,
+                                        'check_fiebre': check_fiebre,
+                                        'check_cabeza': check_cabeza,
+                                        'check_tos': check_tos,
+                                        'check_muscular': check_muscular,
+                                        'check_articulaciones':
+                                            check_articulaciones,
+                                        'check_garganta': check_garganta,
+                                        'check_moco': check_moco,
+                                        'check_ojos': check_ojos,
+                                        'viaje': viaje,
+                                        'reunion': reunion,
+                                        
+                                      });
                                       showModalBottomSheet(
                                           backgroundColor:
                                               Color.fromRGBO(0, 0, 0, 0),
@@ -884,6 +932,38 @@ class _EncuestaState extends State<Encuesta> {
                                           });
                                     } else {
                                       print('caso sospechoso');
+                                      Firestore.instance
+                                          .collection('encuestas')
+                                          .document()
+                                          .setData({
+                                            'res': 1,
+                                            'saludo':'hola',
+                                        'nombre': '$_name',
+                                        'edad': '$_edad',
+                                        'sexo': '$sex',
+                                        'check_cancer': check_cancer,
+                                        'check_cardi': check_cardi,
+                                        'check_diabetes': check_diabetes,
+                                        'check_gesta': check_gesta,
+                                        'check_embara': check_embara,
+                                        'check_pulm': check_pulm,
+                                        'check_vih': check_vih,
+                                        'otro': '$_otro',
+                                        'check_toracico': check_toracico,
+                                        'check_respirato': check_respirato,
+                                        'check_fiebre': check_fiebre,
+                                        'check_cabeza': check_cabeza,
+                                        'check_tos': check_tos,
+                                        'check_muscular': check_muscular,
+                                        'check_articulaciones':
+                                            check_articulaciones,
+                                        'check_garganta': check_garganta,
+                                        'check_moco': check_moco,
+                                        'check_ojos': check_ojos,
+                                        'viaje': viaje,
+                                        'reunion': reunion,
+                                        
+                                      });
                                       showModalBottomSheet(
                                           backgroundColor:
                                               Color.fromRGBO(0, 0, 0, 0),
@@ -895,25 +975,87 @@ class _EncuestaState extends State<Encuesta> {
                                     }
                                   } else {
                                     print('Cuidate');
+                                    Firestore.instance
+                                        .collection('encuestas')
+                                        .document()
+                                        .setData({
+                                      'res': 0,
+                                      'saludo':'hola',
+                                      'nombre': '$_name',
+                                      'edad': '$_edad',
+                                      'sexo': '$sex',
+                                      'check_cancer': check_cancer,
+                                      'check_cardi': check_cardi,
+                                      'check_diabetes': check_diabetes,
+                                      'check_gesta': check_gesta,
+                                      'check_embara': check_embara,
+                                      'check_pulm': check_pulm,
+                                      'check_vih': check_vih,
+                                      'otro': '$_otro',
+                                      'check_toracico': check_toracico,
+                                      'check_respirato': check_respirato,
+                                      'check_fiebre': check_fiebre,
+                                      'check_cabeza': check_cabeza,
+                                      'check_tos': check_tos,
+                                      'check_muscular': check_muscular,
+                                      'check_articulaciones':
+                                          check_articulaciones,
+                                      'check_garganta': check_garganta,
+                                      'check_moco': check_moco,
+                                      'check_ojos': check_ojos,
+                                      'viaje': viaje,
+                                      'reunion': reunion,
+                                    });
                                     showModalBottomSheet(
-                                          backgroundColor:
-                                              Color.fromRGBO(0, 0, 0, 0),
-                                          context: context,
-                                          isScrollControlled: true,
-                                          builder: (context) {
-                                            return Warnin();
-                                          });
+                                        backgroundColor:
+                                            Color.fromRGBO(0, 0, 0, 0),
+                                        context: context,
+                                        isScrollControlled: true,
+                                        builder: (context) {
+                                          return Warnin();
+                                        });
                                   }
                                 } else {
                                   print('Cuidate');
+                                  Firestore.instance
+                                      .collection('encuestas')
+                                      .document()
+                                      .setData({
+                                    'res': 0,
+                                    'saludo':'hola',
+                                    'nombre': '$_name',
+                                    'edad': '$_edad',
+                                    'sexo': '$sex',
+                                    'check_cancer': check_cancer,
+                                    'check_cardi': check_cardi,
+                                    'check_diabetes': check_diabetes,
+                                    'check_gesta': check_gesta,
+                                    'check_embara': check_embara,
+                                    'check_pulm': check_pulm,
+                                    'check_vih': check_vih,
+                                    'otro': '$_otro',
+                                    'check_toracico': check_toracico,
+                                    'check_respirato': check_respirato,
+                                    'check_fiebre': check_fiebre,
+                                    'check_cabeza': check_cabeza,
+                                    'check_tos': check_tos,
+                                    'check_muscular': check_muscular,
+                                    'check_articulaciones':
+                                        check_articulaciones,
+                                    'check_garganta': check_garganta,
+                                    'check_moco': check_moco,
+                                    'check_ojos': check_ojos,
+                                    'viaje': viaje,
+                                    'reunion': reunion,
+                                  });
                                   showModalBottomSheet(
-                                          backgroundColor:
-                                              Color.fromRGBO(0, 0, 0, 0),
-                                          context: context,
-                                          isScrollControlled: true,
-                                          builder: (context) {
-                                            return Warnin();
-                                          });
+                                      backgroundColor:
+                                          Color.fromRGBO(0, 0, 0, 0),
+                                      context: context,
+                                      isScrollControlled: true,
+                                      builder: (context) {
+                                        return Warnin();
+                                      });
                                 }
                               }
 
@@ -983,4 +1125,3 @@ class _EncuestaState extends State<Encuesta> {
     );
   }
 }
-

@@ -34,9 +34,10 @@ class App extends StatelessWidget {
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
           if (state is NoInicializado) {
-            return MyApp(
+            var myApp = MyApp(
               userRepository: _userRepository,
             );
+            return myApp;
           }
           if (state is Autenticado) {
             return HomeScreen(

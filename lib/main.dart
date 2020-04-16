@@ -13,9 +13,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  BlocSupervisor.delegate=SimpleBlocDelegate();
+
+  final UserRepository userRepository=UserRepository();
+  runApp(BlocProvider(
+    create: (context)=> 
+    AuthenticationBloc(userRepository: userRepository)..add(AppStarted()),
+  child: MyApp(userRepository: userRepository),
+  ));
+}
 
 class MyApp extends StatelessWidget {
+  final UserRepository _userRepository;
+  MyApp({Key key, @required UserRepository userRepository})
+      : assert(userRepository != null),
+        _userRepository = userRepository,
+        super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,21 +41,31 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.green,
         primarySwatch: Colors.green,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter Demo Home Page',userRepository:_userRepository),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  final UserRepository _userRepository;
+
+  MyHomePage({Key key, @required UserRepository userRepository, this.title})
+      : assert(userRepository != null),
+        _userRepository = userRepository,
+        super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState(userRepository: _userRepository);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final UserRepository _userRepository;
+
+  _MyHomePageState({Key key, @required UserRepository userRepository})
+      : assert(userRepository != null),
+        _userRepository = userRepository;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -461,7 +486,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         body: Noticias(),
       ),
-      drawer: Menu(),
+      drawer: Menu( userRepository: _userRepository, ),
     );
   }
 }

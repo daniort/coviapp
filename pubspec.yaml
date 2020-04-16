@@ -13,13 +13,19 @@ dependencies:
   url_launcher: ^5.4.1
   font_awesome_flutter: ^8.5.0
   google_fonts: ^0.3.10
-  twitter_api: ^0.1.2
+  
+
   firebase_database: ^3.1.3
   firebase_core: ^0.4.3+1
   firebase_storage: ^3.1.5
   cloud_firestore: ^0.13.4+2
+  
+  image_downloader: ^0.19.2
   carousel_pro: ^1.0.0
   http: ^0.12.0+4
+  
+  cached_network_image: ^2.1.0+1
+  
   firebase_auth:
   google_sign_in:
   flutter_auth_buttons: ^0.8.0
