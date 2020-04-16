@@ -21,6 +21,8 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData;
+    queryData = MediaQuery.of(context);
     return Drawer(
       child: Container(
         decoration: BoxDecoration(color: Color(0xff0d2a31)),
@@ -167,13 +169,13 @@ class Menu extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
                   child: InkWell(
                     onTap: () => {
-                      Navigator.pop(context),
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Encuesta(),
-                        ),
-                      ),
+                      showModalBottomSheet(
+                          elevation: (queryData.size.height),
+                          backgroundColor: Color.fromRGBO(0, 0, 0, 0),
+                          context: context,
+                          builder: (context) {
+                            return LoginScreen(userRepository: _userRepository);
+                          }),
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -189,39 +191,6 @@ class Menu extends StatelessWidget {
                           ),
                           leading: FaIcon(
                             FontAwesomeIcons.clipboardList,
-                            color: Color(0xfff0f3f5),
-                            //size: 30.0,
-                          )),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
-                  child: InkWell(
-                    onTap: () => {
-                      Navigator.pop(context),
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              App(userRepository: _userRepository),
-                        ),
-                      ),
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border:
-                            Border(top: BorderSide(color: Color(0xff19535f))),
-                      ),
-                      child: ListTile(
-                          title: Text(
-                            'Registrate',
-                            style: TextStyle(
-                              color: Color(0xfff0f3f5),
-                            ),
-                          ),
-                          leading: FaIcon(
-                            FontAwesomeIcons.signInAlt,
                             color: Color(0xfff0f3f5),
                             //size: 30.0,
                           )),
@@ -279,14 +248,30 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Login'),
-      ),
-      body: BlocProvider<LoginBloc>(
-        create: (context) => LoginBloc(userRepository: _userRepository),
-        child: LoginForm(userRepository: _userRepository),
-      ),
+    MediaQueryData queryData;
+    queryData = MediaQuery.of(context);
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: Container(
+            width: queryData.size.width,
+            height: (queryData.size.height) * .9,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+              ),
+            ),
+            child: Center(
+              child: BlocProvider<LoginBloc>(
+                create: (context) => LoginBloc(userRepository: _userRepository),
+                child: LoginForm(userRepository: _userRepository),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

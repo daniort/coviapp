@@ -48,7 +48,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   final UserRepository _userRepository;
-
   MyHomePage({Key key, @required UserRepository userRepository, this.title})
       : assert(userRepository != null),
         _userRepository = userRepository,
