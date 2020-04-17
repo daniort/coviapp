@@ -1,3 +1,4 @@
+import 'package:covi/bloc/registro/eserepo.dart';
 import 'package:covi/main.dart';
 import 'package:covi/wid_factores/warnin.dart';
 import 'package:flutter/material.dart';
@@ -177,8 +178,21 @@ class _EncuestaState extends State<Encuesta> {
                         padding: const EdgeInsets.only(left: 15.0),
                         child: TextField(
                           controller: _controllerNombre,
-                          decoration:
-                              InputDecoration(hintText: 'Ubicación :'),
+                          decoration: InputDecoration(hintText: 'correo :'),
+                          inputFormatters: [
+                            BlacklistingTextInputFormatter(RegExp("[0-9]")),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: ((MediaQuery.of(context).size.height) * .08),
+                      color: Color(0xfff0f3f5),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 15.0),
+                        child: TextField(
+                          controller: _controllerNombre,
+                          decoration: InputDecoration(hintText: 'Ubicación :'),
                           inputFormatters: [
                             BlacklistingTextInputFormatter(RegExp("[0-9]")),
                           ],
@@ -894,8 +908,8 @@ class _EncuestaState extends State<Encuesta> {
                                           .collection('encuestas')
                                           .document()
                                           .setData({
-                                            'res': 1,
-                                            'saludo':'hola',
+                                        'res': 1,
+                                        'saludo': 'hola',
                                         'nombre': '$_name',
                                         'edad': '$_edad',
                                         'sexo': '$sex',
@@ -920,7 +934,6 @@ class _EncuestaState extends State<Encuesta> {
                                         'check_ojos': check_ojos,
                                         'viaje': viaje,
                                         'reunion': reunion,
-                                        
                                       });
                                       showModalBottomSheet(
                                           backgroundColor:
@@ -936,8 +949,8 @@ class _EncuestaState extends State<Encuesta> {
                                           .collection('encuestas')
                                           .document()
                                           .setData({
-                                            'res': 1,
-                                            'saludo':'hola',
+                                        'res': 1,
+                                        'saludo': 'hola',
                                         'nombre': '$_name',
                                         'edad': '$_edad',
                                         'sexo': '$sex',
@@ -962,7 +975,6 @@ class _EncuestaState extends State<Encuesta> {
                                         'check_ojos': check_ojos,
                                         'viaje': viaje,
                                         'reunion': reunion,
-                                        
                                       });
                                       showModalBottomSheet(
                                           backgroundColor:
@@ -980,7 +992,7 @@ class _EncuestaState extends State<Encuesta> {
                                         .document()
                                         .setData({
                                       'res': 0,
-                                      'saludo':'hola',
+                                      'saludo': 'hola',
                                       'nombre': '$_name',
                                       'edad': '$_edad',
                                       'sexo': '$sex',
@@ -1022,7 +1034,7 @@ class _EncuestaState extends State<Encuesta> {
                                       .document()
                                       .setData({
                                     'res': 0,
-                                    'saludo':'hola',
+                                    'saludo': 'hola',
                                     'nombre': '$_name',
                                     'edad': '$_edad',
                                     'sexo': '$sex',

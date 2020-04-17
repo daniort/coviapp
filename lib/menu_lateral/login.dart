@@ -41,7 +41,8 @@ class App extends StatelessWidget {
             return myApp;
           }
           if (state is Autenticado) {
-            return Encuesta();
+            return HomeScreen(
+                userRepository: _userRepository, name: state.displayName);
             //HomeScreen(
             //name: state.displayName,
             //userRepository: _userRepository,

@@ -15,13 +15,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  BlocSupervisor.delegate=SimpleBlocDelegate();
+  BlocSupervisor.delegate = SimpleBlocDelegate();
 
-  final UserRepository userRepository=UserRepository();
+  final UserRepository userRepository = UserRepository();
   runApp(BlocProvider(
-    create: (context)=> 
-    AuthenticationBloc(userRepository: userRepository)..add(AppStarted()),
-  child: MyApp(userRepository: userRepository),
+    create: (context) =>
+        AuthenticationBloc(userRepository: userRepository)..add(AppStarted()),
+    child: MyApp(userRepository: userRepository),
   ));
 }
 
@@ -41,7 +41,8 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.green,
         primarySwatch: Colors.green,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page',userRepository:_userRepository),
+      home: MyHomePage(
+          title: 'Flutter Demo Home Page', userRepository: _userRepository),
     );
   }
 }
@@ -56,7 +57,8 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState(userRepository: _userRepository);
+  _MyHomePageState createState() =>
+      _MyHomePageState(userRepository: _userRepository);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -100,9 +102,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     onTap: () => {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => Encuesta(),
-                        ),
+                        MaterialPageRoute(builder: (context) {
+                          return LoginScreen(userRepository: _userRepository);
+                        }),
                       ),
                     },
                     child: Container(
@@ -485,7 +487,9 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         body: Noticias(),
       ),
-      drawer: Menu( userRepository: _userRepository, ),
+      drawer: Menu(
+        userRepository: _userRepository,
+      ),
     );
   }
 }

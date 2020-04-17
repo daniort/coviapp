@@ -4,14 +4,17 @@ import 'package:covi/bloc/google_login_button.dart';
 import 'package:covi/bloc/login_bloc/bloc.dart';
 import 'package:covi/bloc/login_button.dart';
 import 'package:covi/bloc/registro/eserepo.dart';
+import 'package:covi/menu_lateral/continuar.dart';
 import 'package:covi/wid_factores/form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginForm extends StatefulWidget {
   final UserRepository _userRepository;
+  final String name;
 
-  LoginForm({Key key, @required UserRepository userRepository})
+  LoginForm(
+      {Key key, @required UserRepository userRepository, @required this.name})
       : assert(userRepository != null),
         _userRepository = userRepository,
         super(key: key);
@@ -45,7 +48,6 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-  
     return Container(
       child: BlocListener<LoginBloc, LoginState>(listener: (context, state) {
         // tres casos, tres if:
@@ -78,12 +80,12 @@ class _LoginFormState extends State<LoginForm> {
         if (state.isSuccess) {
           print('cirrectooooooo');
           Navigator.pop(context);
-             Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Encuesta(),
-                        ),
-                      );
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Encuesta(),
+            ),
+          );
           BlocProvider.of<AuthenticationBloc>(context).add(LoggedIn());
         }
       }, child: BlocBuilder<LoginBloc, LoginState>(
@@ -126,9 +128,7 @@ class _LoginFormState extends State<LoginForm> {
                           // Tres botones:
                           // LoginButton
                           Container(
-                            color: Colors.amber,
                             child: LoginButton(
-
                               onPressed: isLoginButtonEnabled(state)
                                   ? _onFormSubmitted
                                   : null,
@@ -136,15 +136,12 @@ class _LoginFormState extends State<LoginForm> {
                           ),
                           // GoogleLoginButton
                           Container(
-                            color: Colors.purple,
                             child: Cancelar(
-                              
                               userRepository: _userRepository,
                             ),
                           ),
                           // CreateAccountButton
                           Container(
-                            color: Colors.red,
                             child: CreateAccountButton(
                               userRepository: _userRepository,
                             ),
