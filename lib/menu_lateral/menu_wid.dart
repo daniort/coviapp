@@ -171,9 +171,9 @@ class Menu extends StatelessWidget {
                   child: InkWell(
                     onTap: () => {
                       showModalBottomSheet(
-                          elevation: (queryData.size.height),
-                          backgroundColor: Color.fromRGBO(0, 0, 0, 0),
+                          backgroundColor: Color.fromRGBO(0, 0, 240, 1),
                           context: context,
+                          isScrollControlled: true,
                           builder: (context) {
                             return LoginScreen(userRepository: _userRepository);
                           }),
@@ -241,7 +241,6 @@ class Menu extends StatelessWidget {
 
 class LoginScreen extends StatelessWidget {
   final UserRepository _userRepository;
-
   LoginScreen({Key key, @required UserRepository userRepository})
       : assert(userRepository != null),
         _userRepository = userRepository,
@@ -249,30 +248,22 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MediaQueryData queryData;
-    queryData = MediaQuery.of(context);
-    return Column(
-      children: <Widget>[
-        Expanded(
-          child: Container(
-            width: queryData.size.width,
-            height: (queryData.size.height) * .9,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
-              ),
-            ),
-            child: Center(
-              child: BlocProvider<LoginBloc>(
-                create: (context) => LoginBloc(userRepository: _userRepository),
-                child: LoginForm(userRepository: _userRepository),
-              ),
-            ),
-          ),
+
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
         ),
-      ],
+      ),
+      height: (MediaQuery.of(context).size.height),
+      child: Center(
+        child: BlocProvider<LoginBloc>(
+          create: (context) => LoginBloc(userRepository: _userRepository),
+          child: LoginForm(userRepository: _userRepository),
+        ),
+      ),
     );
   }
 }

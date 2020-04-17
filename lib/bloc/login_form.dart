@@ -4,6 +4,7 @@ import 'package:covi/bloc/google_login_button.dart';
 import 'package:covi/bloc/login_bloc/bloc.dart';
 import 'package:covi/bloc/login_button.dart';
 import 'package:covi/bloc/registro/eserepo.dart';
+import 'package:covi/wid_factores/form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -44,8 +45,7 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    MediaQueryData queryData;
-    queryData = MediaQuery.of(context);
+  
     return Container(
       child: BlocListener<LoginBloc, LoginState>(listener: (context, state) {
         // tres casos, tres if:
@@ -76,6 +76,14 @@ class _LoginFormState extends State<LoginForm> {
             ));
         }
         if (state.isSuccess) {
+          print('cirrectooooooo');
+          Navigator.pop(context);
+             Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Encuesta(),
+                        ),
+                      );
           BlocProvider.of<AuthenticationBloc>(context).add(LoggedIn());
         }
       }, child: BlocBuilder<LoginBloc, LoginState>(
@@ -117,18 +125,29 @@ class _LoginFormState extends State<LoginForm> {
                         children: <Widget>[
                           // Tres botones:
                           // LoginButton
-                          LoginButton(
-                            onPressed: isLoginButtonEnabled(state)
-                                ? _onFormSubmitted
-                                : null,
+                          Container(
+                            color: Colors.amber,
+                            child: LoginButton(
+
+                              onPressed: isLoginButtonEnabled(state)
+                                  ? _onFormSubmitted
+                                  : null,
+                            ),
                           ),
                           // GoogleLoginButton
-                          Cancelar(
-                            userRepository: _userRepository,
+                          Container(
+                            color: Colors.purple,
+                            child: Cancelar(
+                              
+                              userRepository: _userRepository,
+                            ),
                           ),
                           // CreateAccountButton
-                          CreateAccountButton(
-                            userRepository: _userRepository,
+                          Container(
+                            color: Colors.red,
+                            child: CreateAccountButton(
+                              userRepository: _userRepository,
+                            ),
                           ),
                         ],
                       ),
