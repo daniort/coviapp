@@ -5,6 +5,7 @@ import 'package:covi/menu_lateral/login.dart';
 import 'package:covi/wid_factores/enlaces.dart';
 import 'package:covi/wid_factores/factores.dart';
 import 'package:covi/wid_factores/form.dart';
+import 'package:covi/wid_factores/info.dart';
 import 'package:covi/wid_factores/recomendaciones.dart';
 import 'package:covi/wid_factores/signos.dart';
 import 'package:flutter/material.dart';
@@ -205,7 +206,7 @@ class Menu extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Enlaces(),
+                          builder: (context) => Info(),
                         ),
                       ),
                     },
