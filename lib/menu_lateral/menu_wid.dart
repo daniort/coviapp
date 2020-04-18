@@ -1,10 +1,8 @@
 import 'package:covi/bloc/login_bloc/bloc.dart';
 import 'package:covi/bloc/login_form.dart';
 import 'package:covi/bloc/registro/eserepo.dart';
-import 'package:covi/menu_lateral/login.dart';
 import 'package:covi/wid_factores/enlaces.dart';
 import 'package:covi/wid_factores/factores.dart';
-import 'package:covi/wid_factores/form.dart';
 import 'package:covi/wid_factores/info.dart';
 import 'package:covi/wid_factores/recomendaciones.dart';
 import 'package:covi/wid_factores/signos.dart';
@@ -12,13 +10,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+
 class Menu extends StatelessWidget {
   final UserRepository _userRepository;
 
   Menu({Key key, @required UserRepository userRepository})
-      : assert(userRepository != null),
-        _userRepository = userRepository,
-        super(key: key);
+      
+        :_userRepository = userRepository;
+
 
   @override
   Widget build(BuildContext context) {
@@ -171,11 +170,11 @@ class Menu extends StatelessWidget {
                   child: InkWell(
                     onTap: () => {
                       showModalBottomSheet(
-                          backgroundColor: Color.fromRGBO(0, 0, 240, 1),
+                          backgroundColor: Color.fromRGBO(0, 0, 0, 0),
                           context: context,
                           isScrollControlled: true,
                           builder: (context) {
-                            return LoginScreen(userRepository: _userRepository);
+                            return LoginScreen();
                           }),
                     },
                     child: Container(
@@ -242,25 +241,27 @@ class Menu extends StatelessWidget {
 class LoginScreen extends StatelessWidget {
   final UserRepository _userRepository;
   LoginScreen({Key key, @required UserRepository userRepository})
-      : assert(userRepository != null),
-        _userRepository = userRepository,
-        super(key: key);
+      :  _userRepository = userRepository;
+        
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Color(0xffe3e3e3),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(30),
           topRight: Radius.circular(30),
         ),
       ),
-      height: (MediaQuery.of(context).size.height),
-      child: Center(
-        child: BlocProvider<LoginBloc>(
-          create: (context) => LoginBloc(userRepository: _userRepository),
-          child: LoginForm(userRepository: _userRepository),
+      height: (MediaQuery.of(context).size.height)*0.95,
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Center(
+          child: BlocProvider<LoginBloc>(
+            create: (context) => LoginBloc(userRepository: _userRepository),
+            child: LoginForm(userRepository: _userRepository),
+          ),
         ),
       ),
     );

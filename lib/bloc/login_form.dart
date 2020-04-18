@@ -1,29 +1,26 @@
 import 'package:covi/bloc/autenticacion_bloc/bloc.dart';
-import 'package:covi/bloc/create_acount_button.dart';
-import 'package:covi/bloc/google_login_button.dart';
 import 'package:covi/bloc/login_bloc/bloc.dart';
-import 'package:covi/bloc/login_button.dart';
 import 'package:covi/bloc/registro/eserepo.dart';
-import 'package:covi/menu_lateral/continuar.dart';
+import 'package:covi/bloc/registro/register_scream.dart';
 import 'package:covi/wid_factores/form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginForm extends StatefulWidget {
   final UserRepository _userRepository;
-  final String name;
+  
 
   LoginForm(
-      {Key key, @required UserRepository userRepository, @required this.name})
-      : assert(userRepository != null),
-        _userRepository = userRepository,
-        super(key: key);
+      {Key key, @required UserRepository userRepository})
+      
+      : _userRepository = userRepository;
+      
 
   @override
-  _LoginFormState createState() => _LoginFormState();
+  LoginFormState createState() => LoginFormState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class LoginFormState extends State<LoginForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -37,6 +34,8 @@ class _LoginFormState extends State<LoginForm> {
   bool isLoginButtonEnabled(LoginState state) {
     return state.isFormValid && isPopulated && !state.isSubmitting;
   }
+
+  String user='null';
 
   @override
   void initState() {
@@ -71,14 +70,16 @@ class _LoginFormState extends State<LoginForm> {
               content: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text('Logging in... '),
+                  Text('Iniciando... '),
                   CircularProgressIndicator(),
                 ],
               ),
             ));
         }
         if (state.isSuccess) {
-          print('cirrectooooooo');
+          setState(() {
+            user= _emailController.text;
+          });
           Navigator.pop(context);
           Navigator.push(
             context,
@@ -96,6 +97,24 @@ class _LoginFormState extends State<LoginForm> {
               child: Form(
                 child: ListView(
                   children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        child: Center(
+                          child: Text(
+                            'Iniciar sesión',
+                            textAlign: TextAlign.center,
+                            style:
+                                TextStyle(color: Colors.blueGrey, fontSize: 20),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border(top: BorderSide(color: Colors.grey)),
+                      ),
+                    ),
                     TextFormField(
                       controller: _emailController,
                       decoration: InputDecoration(
@@ -104,13 +123,13 @@ class _LoginFormState extends State<LoginForm> {
                       autovalidate: true,
                       autocorrect: false,
                       validator: (_) {
-                        return !state.isEmailValid ? 'Invalid Email' : null;
+                        return !state.isEmailValid ? 'Email Incorrecto' : null;
                       },
                     ),
                     TextFormField(
                       controller: _passwordController,
                       decoration: InputDecoration(
-                          icon: Icon(Icons.lock), labelText: 'Password'),
+                          icon: Icon(Icons.lock), labelText: 'Contraseña'),
                       obscureText: true,
                       autovalidate: true,
                       autocorrect: false,
@@ -125,25 +144,91 @@ class _LoginFormState extends State<LoginForm> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
-                          // Tres botones:
-                          // LoginButton
                           Container(
-                            child: LoginButton(
+                            child: RaisedButton(
+                              color: Color(0xffd7c9aa),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
                               onPressed: isLoginButtonEnabled(state)
                                   ? _onFormSubmitted
                                   : null,
+                              child: Text('Ingresar'),
                             ),
                           ),
-                          // GoogleLoginButton
-                          Container(
-                            child: Cancelar(
-                              userRepository: _userRepository,
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                            child: Container(
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  color: Color(0xffd7c9aa),
+                                  borderRadius: BorderRadius.circular(25.0)),
+                              child: FlatButton(
+                                child: Text('Crear una Cuenta'),
+                                onPressed: () {
+                                  Navigator.of(context).push(
+                                      MaterialPageRoute(builder: (context) {
+                                    return RegisterScreen(
+                                        userRepository: _userRepository);
+                                  }));
+                                },
+                              ),
                             ),
                           ),
-                          // CreateAccountButton
                           Container(
-                            child: CreateAccountButton(
-                              userRepository: _userRepository,
+                            decoration: BoxDecoration(
+                              border:
+                                  Border(top: BorderSide(color: Colors.grey)),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: InkWell(
+                              onTap: () => {
+                                Navigator.pop(context),
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Encuesta(),
+                                  ),
+                                ),
+                              },
+                              child: Container(
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    color: Color(0xffd7c9aa),
+                                    borderRadius: BorderRadius.circular(25.0)),
+                                child: Center(
+                                  child: Text(
+                                    'Continuar como Anónimo',
+                                    style: TextStyle(
+                                      color: Color(0xff000000),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border:
+                                    Border(top: BorderSide(color: Colors.grey)),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Container(
+                              child: Center(
+                                child: Text(
+                                  'Tu correo es para poder asociarla a la encuesta y poder tener contacto contigo de ser necesario.',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ),
                             ),
                           ),
                         ],
@@ -177,5 +262,13 @@ class _LoginFormState extends State<LoginForm> {
   void _onFormSubmitted() {
     _loginBloc.add(LoginWithCredentialsPressed(
         email: _emailController.text, password: _passwordController.text));
+  }
+
+  getUser() {
+    if(user=='null'){
+        return null;
+    }else{
+      return user.toString();
+    }
   }
 }

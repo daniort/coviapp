@@ -11,8 +11,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   //Constructor
   LoginBloc({@required UserRepository userRepository})
-      : assert(userRepository != null),
-        _userRepo = userRepository;
+      
+      :  _userRepo = userRepository;
 
   @override
   LoginState get initialState => LoginState.empty();

@@ -5,7 +5,6 @@ import 'package:covi/bloc/registro/eserepo.dart';
 import 'package:covi/wid_factores/boyd.dart';
 import 'package:covi/wid_factores/enlaces.dart';
 import 'package:covi/wid_factores/factores.dart';
-import 'package:covi/wid_factores/form.dart';
 import 'package:covi/wid_factores/recomendaciones.dart';
 import 'package:covi/wid_factores/signos.dart';
 import 'package:flutter/material.dart';
@@ -49,10 +48,8 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   final UserRepository _userRepository;
-  MyHomePage({Key key, @required UserRepository userRepository, this.title})
-      : assert(userRepository != null),
-        _userRepository = userRepository,
-        super(key: key);
+  MyHomePage({UserRepository userRepository, this.title})
+      : _userRepository = userRepository;
 
   final String title;
 
@@ -65,8 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final UserRepository _userRepository;
 
   _MyHomePageState({Key key, @required UserRepository userRepository})
-      : assert(userRepository != null),
-        _userRepository = userRepository;
+      : _userRepository = userRepository;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
           return <Widget>[
             SliverAppBar(
               title: Text('Covid Report'),
-              //backgroundColor:  Color(0xff19535f),
               expandedHeight: 200.0,
               floating: true,
               pinned: true,
@@ -100,12 +95,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: const EdgeInsets.all(10.0),
                   child: InkWell(
                     onTap: () => {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) {
-                          return LoginScreen(userRepository: _userRepository);
-                        }),
-                      ),
+                      showModalBottomSheet(
+                          backgroundColor: Color.fromRGBO(0, 0, 0, 0),
+                          context: context,
+                          isScrollControlled: true,
+                          builder: (context) {
+                            return LoginScreen(userRepository: _userRepository);
+                          }),
                     },
                     child: Container(
                       height: ((MediaQuery.of(context).size.height) * .15),

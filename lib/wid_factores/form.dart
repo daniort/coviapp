@@ -1,13 +1,14 @@
+import 'package:covi/bloc/login_form.dart';
 import 'package:covi/bloc/registro/eserepo.dart';
-import 'package:covi/main.dart';
+
 import 'package:covi/wid_factores/warnin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 
 class Encuesta extends StatefulWidget {
   @override
@@ -40,6 +41,14 @@ bool viaje = false;
 bool reunion = false;
 
 class _EncuestaState extends State<Encuesta> {
+
+   final UserRepository _userRepository;
+  _EncuestaState({@required UserRepository userRepository})
+      
+      :  _userRepository = userRepository;
+      
+
+
   void initState() {
     _controllerNombre = TextEditingController();
     _controllerEdad = TextEditingController();
@@ -178,21 +187,8 @@ class _EncuestaState extends State<Encuesta> {
                         padding: const EdgeInsets.only(left: 15.0),
                         child: TextField(
                           controller: _controllerNombre,
-                          decoration: InputDecoration(hintText: 'correo :'),
-                          inputFormatters: [
-                            BlacklistingTextInputFormatter(RegExp("[0-9]")),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: ((MediaQuery.of(context).size.height) * .08),
-                      color: Color(0xfff0f3f5),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 15.0),
-                        child: TextField(
-                          controller: _controllerNombre,
-                          decoration: InputDecoration(hintText: 'Ubicación :'),
+                          decoration:
+                              InputDecoration(hintText: 'Ubicación :'),
                           inputFormatters: [
                             BlacklistingTextInputFormatter(RegExp("[0-9]")),
                           ],
@@ -850,7 +846,10 @@ class _EncuestaState extends State<Encuesta> {
                               int _fiebretoscabeza = 0;
                               int _unode = 0;
                               int _viaje = 0;
-
+                              var _user = LoginFormState().getUser();
+                              print(">>>>>>>>>>>>>>>>>>>>>>>>>");
+                              print(_user);
+                              print(">>>>>>>>>>>>>>>>>>>>>>>>>");
                               if (check_respirato || check_toracico) {
                                 print('urgencias papu');
                                 Firestore.instance
@@ -887,7 +886,7 @@ class _EncuestaState extends State<Encuesta> {
                                     context: context,
                                     isScrollControlled: true,
                                     builder: (context) {
-                                      return Urgencias();
+                                      return Urgencias(userRepository: _userRepository);
                                     });
                               } else {
                                 if (check_fiebre) _fiebretoscabeza++;
@@ -908,8 +907,8 @@ class _EncuestaState extends State<Encuesta> {
                                           .collection('encuestas')
                                           .document()
                                           .setData({
-                                        'res': 1,
-                                        'saludo': 'hola',
+                                            'res': 1,
+                                            'saludo':'hola',
                                         'nombre': '$_name',
                                         'edad': '$_edad',
                                         'sexo': '$sex',
@@ -934,6 +933,7 @@ class _EncuestaState extends State<Encuesta> {
                                         'check_ojos': check_ojos,
                                         'viaje': viaje,
                                         'reunion': reunion,
+                                        
                                       });
                                       showModalBottomSheet(
                                           backgroundColor:
@@ -941,7 +941,7 @@ class _EncuestaState extends State<Encuesta> {
                                           context: context,
                                           isScrollControlled: true,
                                           builder: (context) {
-                                            return Sospecha();
+                                            return Sospecha(userRepository: _userRepository);
                                           });
                                     } else {
                                       print('caso sospechoso');
@@ -949,8 +949,8 @@ class _EncuestaState extends State<Encuesta> {
                                           .collection('encuestas')
                                           .document()
                                           .setData({
-                                        'res': 1,
-                                        'saludo': 'hola',
+                                            'res': 1,
+                                            'saludo':'hola',
                                         'nombre': '$_name',
                                         'edad': '$_edad',
                                         'sexo': '$sex',
@@ -975,6 +975,7 @@ class _EncuestaState extends State<Encuesta> {
                                         'check_ojos': check_ojos,
                                         'viaje': viaje,
                                         'reunion': reunion,
+                                        
                                       });
                                       showModalBottomSheet(
                                           backgroundColor:
@@ -982,7 +983,7 @@ class _EncuestaState extends State<Encuesta> {
                                           context: context,
                                           isScrollControlled: true,
                                           builder: (context) {
-                                            return Sospecha();
+                                            return Sospecha(userRepository: _userRepository);
                                           });
                                     }
                                   } else {
@@ -992,7 +993,7 @@ class _EncuestaState extends State<Encuesta> {
                                         .document()
                                         .setData({
                                       'res': 0,
-                                      'saludo': 'hola',
+                                      'saludo':'hola',
                                       'nombre': '$_name',
                                       'edad': '$_edad',
                                       'sexo': '$sex',
@@ -1024,7 +1025,7 @@ class _EncuestaState extends State<Encuesta> {
                                         context: context,
                                         isScrollControlled: true,
                                         builder: (context) {
-                                          return Warnin();
+                                          return Warnin(userRepository: _userRepository);
                                         });
                                   }
                                 } else {
@@ -1034,7 +1035,7 @@ class _EncuestaState extends State<Encuesta> {
                                       .document()
                                       .setData({
                                     'res': 0,
-                                    'saludo': 'hola',
+                                    'saludo':'hola',
                                     'nombre': '$_name',
                                     'edad': '$_edad',
                                     'sexo': '$sex',
@@ -1066,7 +1067,7 @@ class _EncuestaState extends State<Encuesta> {
                                       context: context,
                                       isScrollControlled: true,
                                       builder: (context) {
-                                        return Warnin();
+                                        return Warnin(userRepository: _userRepository);
                                       });
                                 }
                               }

@@ -1,11 +1,12 @@
 import 'package:covi/wid_factores/saveImagen.dart';
-import 'package:http/http.dart' as http;
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'dart:io';
 
 class Noticias extends StatefulWidget {
   @override
@@ -324,6 +325,38 @@ class _NoticiasState extends State<Noticias> {
                                                                     SaveFile()
                                                                         .save(item[
                                                                             'imagen']);
+                                                                    //ALERT
+                                                                    showModalBottomSheet(
+                                                                        backgroundColor: Color.fromRGBO(
+                                                                            0,
+                                                                            0,
+                                                                            0,
+                                                                            0),
+                                                                        context:
+                                                                            context,
+                                                                        isScrollControlled:
+                                                                            true,
+                                                                        builder:
+                                                                            (context) {
+                                                                          return Padding(
+                                                                              padding: const EdgeInsets.only(top: 8.0, bottom: 30.0, left: 70.0, right: 70.0),
+                                                                              child: Container(
+                                                                                decoration: BoxDecoration(
+                                                                                  color: Color.fromRGBO(0, 0, 0, 0.5),
+                                                                                  borderRadius: BorderRadius.circular(5),
+                                                                                ),
+                                                                                width: 20,
+                                                                                height: MediaQuery.of(context).size.height * 0.05,
+                                                                                child: Center(
+                                                                                  child: Text(
+                                                                                    'Imagen Guardada',
+                                                                                    style: TextStyle(
+                                                                                      color: Color(0xff0d2a31),
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ));
+                                                                        });
                                                                   } on Error catch (e) {
                                                                     print(
                                                                         'Error has occured while saving');
@@ -408,23 +441,12 @@ class _NoticiasState extends State<Noticias> {
   }
 }
 
-void _onImageSaveButtonPressed(item) async {
-  print("_onImageSaveButtonPressed");
-  final ref = FirebaseStorage.instance.ref().child("noticias/$item");
-  var url = await ref.getDownloadURL();
-  //var response = await http.get('$url');
-  //await ImageDownloader.downloadImage(url);
-}
-
 Future<Widget> getImage(BuildContext context, String item) async {
   Image m;
-  print(item);
   if (item != null) {
     var path = "noticias/$item";
-    print(path);
     final ref = FirebaseStorage.instance.ref().child('$path');
     var url = await ref.getDownloadURL();
-    print(url);
     m = Image.network(url.toString());
   } else {
     m = Image.asset("lib/assets/images/3664282.png");
