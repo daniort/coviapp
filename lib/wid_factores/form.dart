@@ -4,11 +4,10 @@ import 'package:covi/bloc/registro/eserepo.dart';
 import 'package:covi/wid_factores/warnin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:geolocator/geolocator.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 
 class Encuesta extends StatefulWidget {
   @override
@@ -41,13 +40,16 @@ bool viaje = false;
 bool reunion = false;
 
 class _EncuestaState extends State<Encuesta> {
-
-   final UserRepository _userRepository;
+  final UserRepository _userRepository;
   _EncuestaState({@required UserRepository userRepository})
-      
-      :  _userRepository = userRepository;
-      
+      : _userRepository = userRepository;
 
+  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+
+  Position _currentPosition;
+  String _currentLocality;
+  String _currentCp;
+  String _currentEstado;
 
   void initState() {
     _controllerNombre = TextEditingController();
@@ -180,21 +182,7 @@ class _EncuestaState extends State<Encuesta> {
                         )
                       ],
                     ),
-                    Container(
-                      height: ((MediaQuery.of(context).size.height) * .08),
-                      color: Color(0xfff0f3f5),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 15.0),
-                        child: TextField(
-                          controller: _controllerNombre,
-                          decoration:
-                              InputDecoration(hintText: 'Ubicación :'),
-                          inputFormatters: [
-                            BlacklistingTextInputFormatter(RegExp("[0-9]")),
-                          ],
-                        ),
-                      ),
-                    ),
+               
                     Container(
                       height: ((MediaQuery.of(context).size.height) * .05),
                       width: ((MediaQuery.of(context).size.width)),
@@ -804,7 +792,6 @@ class _EncuestaState extends State<Encuesta> {
                           ),
                         ),
                         Container(
-                          //height: ((MediaQuery.of(context).size.height) * .08),
                           child: Center(
                             child: Text(
                                 'Haber estado en contacto con un caso\nconfirmado o bajo investigacion a \nCOVID-19.',
@@ -819,10 +806,12 @@ class _EncuestaState extends State<Encuesta> {
                         String _otro;
                         String _edad;
                         String _name;
+                        _getCurrentLocation();
+
                         if (_controllerNombre.text.isNotEmpty) {
                           _name = _controllerNombre.text.toUpperCase();
                         } else {
-                          _name = "anonimo";
+                          _name = "null";
                         }
                         if (_controllerEdad.text.isNotEmpty) {
                           _edad = _controllerEdad.text.toUpperCase();
@@ -834,7 +823,6 @@ class _EncuestaState extends State<Encuesta> {
                         } else {
                           _otro = "null";
                         }
-                        print('Agregado');
                         _scaffoldKey.currentState.showSnackBar(SnackBar(
                           content: Text('Presiona para Confirmar:'),
                           duration: Duration(milliseconds: 3000),
@@ -846,16 +834,15 @@ class _EncuestaState extends State<Encuesta> {
                               int _fiebretoscabeza = 0;
                               int _unode = 0;
                               int _viaje = 0;
-                              var _user = LoginFormState().getUser();
-                              print(">>>>>>>>>>>>>>>>>>>>>>>>>");
-                              print(_user);
-                              print(">>>>>>>>>>>>>>>>>>>>>>>>>");
                               if (check_respirato || check_toracico) {
                                 print('urgencias papu');
                                 Firestore.instance
                                     .collection('encuestas')
                                     .document()
                                     .setData({
+                                  'distrito': '$_currentLocality',
+                                  'cp': '$_currentCp',
+                                  'estado': '$_currentEstado',
                                   'nombre': '$_name',
                                   'edad': '$_edad',
                                   'sexo': '$sex',
@@ -886,7 +873,8 @@ class _EncuestaState extends State<Encuesta> {
                                     context: context,
                                     isScrollControlled: true,
                                     builder: (context) {
-                                      return Urgencias(userRepository: _userRepository);
+                                      return Urgencias(
+                                          userRepository: _userRepository);
                                     });
                               } else {
                                 if (check_fiebre) _fiebretoscabeza++;
@@ -907,8 +895,11 @@ class _EncuestaState extends State<Encuesta> {
                                           .collection('encuestas')
                                           .document()
                                           .setData({
-                                            'res': 1,
-                                            'saludo':'hola',
+                                        'distrito': '$_currentLocality',
+                                        'cp': '$_currentCp',
+                                        'estado': '$_currentEstado',
+                                        'res': 1,
+                                        'saludo': 'hola',
                                         'nombre': '$_name',
                                         'edad': '$_edad',
                                         'sexo': '$sex',
@@ -933,7 +924,6 @@ class _EncuestaState extends State<Encuesta> {
                                         'check_ojos': check_ojos,
                                         'viaje': viaje,
                                         'reunion': reunion,
-                                        
                                       });
                                       showModalBottomSheet(
                                           backgroundColor:
@@ -941,7 +931,9 @@ class _EncuestaState extends State<Encuesta> {
                                           context: context,
                                           isScrollControlled: true,
                                           builder: (context) {
-                                            return Sospecha(userRepository: _userRepository);
+                                            return Sospecha(
+                                                userRepository:
+                                                    _userRepository);
                                           });
                                     } else {
                                       print('caso sospechoso');
@@ -949,8 +941,11 @@ class _EncuestaState extends State<Encuesta> {
                                           .collection('encuestas')
                                           .document()
                                           .setData({
-                                            'res': 1,
-                                            'saludo':'hola',
+                                        'distrito': '$_currentLocality',
+                                        'cp': '$_currentCp',
+                                        'estado': '$_currentEstado',
+                                        'res': 1,
+                                        'saludo': 'hola',
                                         'nombre': '$_name',
                                         'edad': '$_edad',
                                         'sexo': '$sex',
@@ -975,7 +970,6 @@ class _EncuestaState extends State<Encuesta> {
                                         'check_ojos': check_ojos,
                                         'viaje': viaje,
                                         'reunion': reunion,
-                                        
                                       });
                                       showModalBottomSheet(
                                           backgroundColor:
@@ -983,7 +977,9 @@ class _EncuestaState extends State<Encuesta> {
                                           context: context,
                                           isScrollControlled: true,
                                           builder: (context) {
-                                            return Sospecha(userRepository: _userRepository);
+                                            return Sospecha(
+                                                userRepository:
+                                                    _userRepository);
                                           });
                                     }
                                   } else {
@@ -992,8 +988,11 @@ class _EncuestaState extends State<Encuesta> {
                                         .collection('encuestas')
                                         .document()
                                         .setData({
+                                      'distrito': '$_currentLocality',
+                                      'cp': '$_currentCp',
+                                      'estado': '$_currentEstado',
                                       'res': 0,
-                                      'saludo':'hola',
+                                      'saludo': 'hola',
                                       'nombre': '$_name',
                                       'edad': '$_edad',
                                       'sexo': '$sex',
@@ -1025,7 +1024,8 @@ class _EncuestaState extends State<Encuesta> {
                                         context: context,
                                         isScrollControlled: true,
                                         builder: (context) {
-                                          return Warnin(userRepository: _userRepository);
+                                          return Warnin(
+                                              userRepository: _userRepository);
                                         });
                                   }
                                 } else {
@@ -1034,8 +1034,11 @@ class _EncuestaState extends State<Encuesta> {
                                       .collection('encuestas')
                                       .document()
                                       .setData({
+                                    'distrito': '$_currentLocality',
+                                    'cp': '$_currentCp',
+                                    'estado': '$_currentEstado',
                                     'res': 0,
-                                    'saludo':'hola',
+                                    'saludo': 'hola',
                                     'nombre': '$_name',
                                     'edad': '$_edad',
                                     'sexo': '$sex',
@@ -1067,7 +1070,8 @@ class _EncuestaState extends State<Encuesta> {
                                       context: context,
                                       isScrollControlled: true,
                                       builder: (context) {
-                                        return Warnin(userRepository: _userRepository);
+                                        return Warnin(
+                                            userRepository: _userRepository);
                                       });
                                 }
                               }
@@ -1136,5 +1140,36 @@ class _EncuestaState extends State<Encuesta> {
         ),
       ),
     );
+  }
+
+  _getCurrentLocation() {
+    geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
+      setState(() {
+        _currentPosition = position;
+      });
+
+      _getAddressFromLatLng();
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
+  _getAddressFromLatLng() async {
+    try {
+      List<Placemark> p = await geolocator.placemarkFromCoordinates(
+          _currentPosition.latitude, _currentPosition.longitude);
+
+      Placemark place = p[0];
+
+      setState(() {
+        _currentLocality = "${place.locality}";
+        _currentCp = "${place.postalCode}";
+        _currentEstado = "${place.administrativeArea}";
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 }
