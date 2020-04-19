@@ -50,6 +50,8 @@ class _EncuestaState extends State<Encuesta> {
   String _currentLocality;
   String _currentCp;
   String _currentEstado;
+  String _lati;
+  String _longi;
 
   void initState() {
     _controllerNombre = TextEditingController();
@@ -807,7 +809,6 @@ class _EncuestaState extends State<Encuesta> {
                         String _edad;
                         String _name;
                         _getCurrentLocation();
-
                         if (_controllerNombre.text.isNotEmpty) {
                           _name = _controllerNombre.text.toUpperCase();
                         } else {
@@ -848,6 +849,8 @@ class _EncuestaState extends State<Encuesta> {
                                   'distrito': '$_currentLocality',
                                   'cp': '$_currentCp',
                                   'estado': '$_currentEstado',
+                                  'latitud': '$_lati',
+                                  'longitud': '$_longi',
                                   'nombre': '$_name',
                                   'edad': '$_edad',
                                   'sexo': '$sex',
@@ -905,6 +908,8 @@ class _EncuestaState extends State<Encuesta> {
                                         'distrito': '$_currentLocality',
                                         'cp': '$_currentCp',
                                         'estado': '$_currentEstado',
+                                        'latitud': '$_lati',
+                                        'longitud': '$_longi',
                                         'res': 1,
                                         'saludo': 'hola',
                                         'nombre': '$_name',
@@ -953,6 +958,8 @@ class _EncuestaState extends State<Encuesta> {
                                         'distrito': '$_currentLocality',
                                         'cp': '$_currentCp',
                                         'estado': '$_currentEstado',
+                                        'latitud': '$_lati',
+                                        'longitud': '$_longi',
                                         'res': 1,
                                         'saludo': 'hola',
                                         'nombre': '$_name',
@@ -1003,6 +1010,8 @@ class _EncuestaState extends State<Encuesta> {
                                       'distrito': '$_currentLocality',
                                       'cp': '$_currentCp',
                                       'estado': '$_currentEstado',
+                                      'latitud': '$_lati',
+                                        'longitud': '$_longi',
                                       'res': 0,
                                       'saludo': 'hola',
                                       'nombre': '$_name',
@@ -1052,6 +1061,8 @@ class _EncuestaState extends State<Encuesta> {
                                     'distrito': '$_currentLocality',
                                     'cp': '$_currentCp',
                                     'estado': '$_currentEstado',
+                                    'latitud': '$_lati',
+                                        'longitud': '$_longi',
                                     'res': 0,
                                     'saludo': 'hola',
                                     'nombre': '$_name',
@@ -1182,6 +1193,8 @@ class _EncuestaState extends State<Encuesta> {
         _currentLocality = "${place.locality}";
         _currentCp = "${place.postalCode}";
         _currentEstado = "${place.administrativeArea}";
+        _lati = "${_currentPosition.latitude}";
+        _longi = "${_currentPosition.longitude}";
       });
     } catch (e) {
       print(e);
