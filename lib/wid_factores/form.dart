@@ -834,12 +834,17 @@ class _EncuestaState extends State<Encuesta> {
                               int _fiebretoscabeza = 0;
                               int _unode = 0;
                               int _viaje = 0;
+                              int _dia  = DateTime.now().day;
+                              int _mes  = DateTime.now().month;
+                              int _year  = DateTime.now().year;
                               if (check_respirato || check_toracico) {
-                                print('urgencias papu');
                                 Firestore.instance
                                     .collection('encuestas')
                                     .document()
                                     .setData({
+                                      'dia':  _dia,
+                                      'mes':  _mes,
+                                      'year':  _year,
                                   'distrito': '$_currentLocality',
                                   'cp': '$_currentCp',
                                   'estado': '$_currentEstado',
@@ -866,7 +871,7 @@ class _EncuestaState extends State<Encuesta> {
                                   'check_ojos': check_ojos,
                                   'viaje': viaje,
                                   'reunion': reunion,
-                                  'resultado': 'urgente',
+                                  'res': 2,
                                 });
                                 showModalBottomSheet(
                                     backgroundColor: Color.fromRGBO(0, 0, 0, 0),
@@ -890,11 +895,13 @@ class _EncuestaState extends State<Encuesta> {
                                 if (_fiebretoscabeza >= 2) {
                                   if (_unode >= 1) {
                                     if (_viaje >= 1) {
-                                      print('Caso Sospechoso');
                                       Firestore.instance
                                           .collection('encuestas')
                                           .document()
                                           .setData({
+                                          'dia':  _dia,
+                                      'mes':  _mes,
+                                      'year':  _year,
                                         'distrito': '$_currentLocality',
                                         'cp': '$_currentCp',
                                         'estado': '$_currentEstado',
@@ -936,11 +943,13 @@ class _EncuestaState extends State<Encuesta> {
                                                     _userRepository);
                                           });
                                     } else {
-                                      print('caso sospechoso');
                                       Firestore.instance
                                           .collection('encuestas')
                                           .document()
                                           .setData({
+                                              'dia':  _dia,
+                                      'mes':  _mes,
+                                      'year':  _year,
                                         'distrito': '$_currentLocality',
                                         'cp': '$_currentCp',
                                         'estado': '$_currentEstado',
@@ -988,6 +997,9 @@ class _EncuestaState extends State<Encuesta> {
                                         .collection('encuestas')
                                         .document()
                                         .setData({
+                                            'dia':  _dia,
+                                      'mes':  _mes,
+                                      'year':  _year,
                                       'distrito': '$_currentLocality',
                                       'cp': '$_currentCp',
                                       'estado': '$_currentEstado',
@@ -1034,6 +1046,9 @@ class _EncuestaState extends State<Encuesta> {
                                       .collection('encuestas')
                                       .document()
                                       .setData({
+                                          'dia':  _dia,
+                                      'mes':  _mes,
+                                      'year':  _year,
                                     'distrito': '$_currentLocality',
                                     'cp': '$_currentCp',
                                     'estado': '$_currentEstado',
