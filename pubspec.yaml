@@ -24,6 +24,7 @@ dependencies:
   image_downloader: ^0.19.2
   carousel_pro: ^1.0.0
   http: ^0.12.0+4
+  geolocator: ^5.3.1
   
   cached_network_image: ^2.1.0+1
   

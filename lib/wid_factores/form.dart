@@ -1,6 +1,7 @@
 import 'package:covi/wid_factores/warnin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:geolocator/geolocator.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -36,6 +37,15 @@ bool viaje = false;
 bool reunion = false;
 
 class _EncuestaState extends State<Encuesta> {
+  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+
+  Position _currentPosition;
+  String _currentLocality;
+  String _currentCp;
+  String _currentEstado;
+  String _lati;
+  String _longi;
+
   void initState() {
     _controllerNombre = TextEditingController();
     _controllerEdad = TextEditingController();
@@ -166,20 +176,6 @@ class _EncuestaState extends State<Encuesta> {
                           ),
                         )
                       ],
-                    ),
-                    Container(
-                      height: ((MediaQuery.of(context).size.height) * .08),
-                      color: Color(0xfff0f3f5),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 15.0),
-                        child: TextField(
-                          controller: _controllerNombre,
-                          decoration: InputDecoration(hintText: 'Ubicación :'),
-                          inputFormatters: [
-                            BlacklistingTextInputFormatter(RegExp("[0-9]")),
-                          ],
-                        ),
-                      ),
                     ),
                     Container(
                       height: ((MediaQuery.of(context).size.height) * .05),
@@ -790,7 +786,6 @@ class _EncuestaState extends State<Encuesta> {
                           ),
                         ),
                         Container(
-                          //height: ((MediaQuery.of(context).size.height) * .08),
                           child: Center(
                             child: Text(
                                 'Haber estado en contacto con un caso\nconfirmado o bajo investigacion a \nCOVID-19.',
@@ -805,10 +800,11 @@ class _EncuestaState extends State<Encuesta> {
                         String _otro;
                         String _edad;
                         String _name;
+                        _getCurrentLocation();
                         if (_controllerNombre.text.isNotEmpty) {
                           _name = _controllerNombre.text.toUpperCase();
                         } else {
-                          _name = "anonimo";
+                          _name = "null";
                         }
                         if (_controllerEdad.text.isNotEmpty) {
                           _edad = _controllerEdad.text.toUpperCase();
@@ -820,7 +816,6 @@ class _EncuestaState extends State<Encuesta> {
                         } else {
                           _otro = "null";
                         }
-                        print('Agregado');
                         _scaffoldKey.currentState.showSnackBar(SnackBar(
                           content: Text('Presiona para Confirmar:'),
                           duration: Duration(milliseconds: 3000),
@@ -832,16 +827,22 @@ class _EncuestaState extends State<Encuesta> {
                               int _fiebretoscabeza = 0;
                               int _unode = 0;
                               int _viaje = 0;
-
-                              print(">>>>>>>>>>>>>>>>>>>>>>>>>");
-                              print('');
-                              print(">>>>>>>>>>>>>>>>>>>>>>>>>");
+                              int _dia = DateTime.now().day;
+                              int _mes = DateTime.now().month;
+                              int _year = DateTime.now().year;
                               if (check_respirato || check_toracico) {
-                                print('urgencias papu');
                                 Firestore.instance
                                     .collection('encuestas')
                                     .document()
                                     .setData({
+                                  'dia': _dia,
+                                  'mes': _mes,
+                                  'year': _year,
+                                  'distrito': '$_currentLocality',
+                                  'cp': '$_currentCp',
+                                  'estado': '$_currentEstado',
+                                  'latitud': '$_lati',
+                                  'longitud': '$_longi',
                                   'nombre': '$_name',
                                   'edad': '$_edad',
                                   'sexo': '$sex',
@@ -865,7 +866,7 @@ class _EncuestaState extends State<Encuesta> {
                                   'check_ojos': check_ojos,
                                   'viaje': viaje,
                                   'reunion': reunion,
-                                  'resultado': 'urgente',
+                                  'res': 2,
                                 });
                                 showModalBottomSheet(
                                     backgroundColor: Color.fromRGBO(0, 0, 0, 0),
@@ -888,11 +889,18 @@ class _EncuestaState extends State<Encuesta> {
                                 if (_fiebretoscabeza >= 2) {
                                   if (_unode >= 1) {
                                     if (_viaje >= 1) {
-                                      print('Caso Sospechoso');
                                       Firestore.instance
                                           .collection('encuestas')
                                           .document()
                                           .setData({
+                                        'dia': _dia,
+                                        'mes': _mes,
+                                        'year': _year,
+                                        'distrito': '$_currentLocality',
+                                        'cp': '$_currentCp',
+                                        'estado': '$_currentEstado',
+                                        'latitud': '$_lati',
+                                        'longitud': '$_longi',
                                         'res': 1,
                                         'saludo': 'hola',
                                         'nombre': '$_name',
@@ -929,11 +937,18 @@ class _EncuestaState extends State<Encuesta> {
                                             return Sospecha();
                                           });
                                     } else {
-                                      print('caso sospechoso');
                                       Firestore.instance
                                           .collection('encuestas')
                                           .document()
                                           .setData({
+                                        'dia': _dia,
+                                        'mes': _mes,
+                                        'year': _year,
+                                        'distrito': '$_currentLocality',
+                                        'cp': '$_currentCp',
+                                        'estado': '$_currentEstado',
+                                        'latitud': '$_lati',
+                                        'longitud': '$_longi',
                                         'res': 1,
                                         'saludo': 'hola',
                                         'nombre': '$_name',
@@ -976,6 +991,14 @@ class _EncuestaState extends State<Encuesta> {
                                         .collection('encuestas')
                                         .document()
                                         .setData({
+                                      'dia': _dia,
+                                      'mes': _mes,
+                                      'year': _year,
+                                      'distrito': '$_currentLocality',
+                                      'cp': '$_currentCp',
+                                      'estado': '$_currentEstado',
+                                      'latitud': '$_lati',
+                                      'longitud': '$_longi',
                                       'res': 0,
                                       'saludo': 'hola',
                                       'nombre': '$_name',
@@ -1018,6 +1041,14 @@ class _EncuestaState extends State<Encuesta> {
                                       .collection('encuestas')
                                       .document()
                                       .setData({
+                                    'dia': _dia,
+                                    'mes': _mes,
+                                    'year': _year,
+                                    'distrito': '$_currentLocality',
+                                    'cp': '$_currentCp',
+                                    'estado': '$_currentEstado',
+                                    'latitud': '$_lati',
+                                    'longitud': '$_longi',
                                     'res': 0,
                                     'saludo': 'hola',
                                     'nombre': '$_name',
@@ -1120,5 +1151,38 @@ class _EncuestaState extends State<Encuesta> {
         ),
       ),
     );
+  }
+
+  _getCurrentLocation() {
+    geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
+      setState(() {
+        _currentPosition = position;
+      });
+
+      _getAddressFromLatLng();
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
+  _getAddressFromLatLng() async {
+    try {
+      List<Placemark> p = await geolocator.placemarkFromCoordinates(
+          _currentPosition.latitude, _currentPosition.longitude);
+
+      Placemark place = p[0];
+
+      setState(() {
+        _currentLocality = "${place.locality}";
+        _currentCp = "${place.postalCode}";
+        _currentEstado = "${place.administrativeArea}";
+        _lati = "${_currentPosition.latitude}";
+        _longi = "${_currentPosition.longitude}";
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 }
