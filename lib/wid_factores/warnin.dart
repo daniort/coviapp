@@ -1,4 +1,3 @@
-import 'package:covi/bloc/registro/eserepo.dart';
 import 'package:covi/main.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -6,10 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Warnin extends StatelessWidget {
-  final UserRepository _userRepository;
-  Warnin({@required UserRepository userRepository})
-      : _userRepository = userRepository;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -243,9 +238,7 @@ class Warnin extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => MyHomePage(
-                      userRepository: _userRepository,
-                    ),
+                    builder: (context) => MyHomePage(),
                   ),
                 ),
               },
@@ -271,11 +264,6 @@ class Warnin extends StatelessWidget {
 }
 
 class Urgencias extends StatelessWidget {
-  final UserRepository _userRepository;
-  Urgencias({Key key, @required UserRepository userRepository})
-      : assert(userRepository != null),
-        _userRepository = userRepository,
-        super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -512,9 +500,7 @@ class Urgencias extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => MyHomePage(
-                      userRepository: _userRepository,
-                    ),
+                    builder: (context) => MyHomePage(),
                   ),
                 ),
               },
@@ -540,11 +526,6 @@ class Urgencias extends StatelessWidget {
 }
 
 class Sospecha extends StatelessWidget {
-  final UserRepository _userRepository;
-  Sospecha({Key key, @required UserRepository userRepository})
-      : assert(userRepository != null),
-        _userRepository = userRepository,
-        super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -781,9 +762,7 @@ class Sospecha extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => MyHomePage(
-                      userRepository: _userRepository,
-                    ),
+                    builder: (context) => MyHomePage(),
                   ),
                 ),
               },
