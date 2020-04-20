@@ -1,6 +1,3 @@
-import 'package:covi/bloc/login_form.dart';
-import 'package:covi/bloc/registro/eserepo.dart';
-
 import 'package:covi/wid_factores/warnin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -40,10 +37,6 @@ bool viaje = false;
 bool reunion = false;
 
 class _EncuestaState extends State<Encuesta> {
-  final UserRepository _userRepository;
-  _EncuestaState({@required UserRepository userRepository})
-      : _userRepository = userRepository;
-
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
 
   Position _currentPosition;
@@ -888,8 +881,7 @@ class _EncuestaState extends State<Encuesta> {
                                     context: context,
                                     isScrollControlled: true,
                                     builder: (context) {
-                                      return Urgencias(
-                                          userRepository: _userRepository);
+                                      return Urgencias();
                                     });
                               } else {
                                 if (check_fiebre) _fiebretoscabeza++;
@@ -952,9 +944,7 @@ class _EncuestaState extends State<Encuesta> {
                                           context: context,
                                           isScrollControlled: true,
                                           builder: (context) {
-                                            return Sospecha(
-                                                userRepository:
-                                                    _userRepository);
+                                            return Sospecha();
                                           });
                                     } else {
                                       Firestore.instance
@@ -1004,9 +994,7 @@ class _EncuestaState extends State<Encuesta> {
                                           context: context,
                                           isScrollControlled: true,
                                           builder: (context) {
-                                            return Sospecha(
-                                                userRepository:
-                                                    _userRepository);
+                                            return Sospecha();
                                           });
                                     }
                                   } else {
@@ -1058,8 +1046,7 @@ class _EncuestaState extends State<Encuesta> {
                                         context: context,
                                         isScrollControlled: true,
                                         builder: (context) {
-                                          return Warnin(
-                                              userRepository: _userRepository);
+                                          return Warnin();
                                         });
                                   }
                                 } else {
@@ -1111,8 +1098,7 @@ class _EncuestaState extends State<Encuesta> {
                                       context: context,
                                       isScrollControlled: true,
                                       builder: (context) {
-                                        return Warnin(
-                                            userRepository: _userRepository);
+                                        return Warnin();
                                       });
                                 }
                               }
