@@ -171,7 +171,7 @@ class _RecomendacionesState extends State<Recomendaciones> {
               padding: const EdgeInsets.all(10.0),
               child: InkWell(
                 onTap: () {
-                  launch('http://salud.edomex.gob.mx/salud/medidas_prevencion');
+                  launch('https://www.saludzac.gob.mx/');
                 },
                 child: Container(
                   height: ((MediaQuery.of(context).size.height) * .25),

@@ -68,7 +68,7 @@ class _EnlacesState extends State<Enlaces> {
                                       alignment: Alignment.topLeft,
                                       child: Padding(
                                         padding: EdgeInsets.only(left: 10.0),
-                                        child: Text('Secretaria de Salud del Estados de Zacatecas',
+                                        child: Text('Secretaría de Salud del Estado de Zacatecas',
                                             style: GoogleFonts.doHyeon(
                                                 color: Color(0xff0d2a31),
                                                 fontSize: 20.0)),

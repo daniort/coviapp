@@ -57,6 +57,7 @@ class _EncuestaState extends State<Encuesta> {
     _controllerNombre = TextEditingController();
     _controllerEdad = TextEditingController();
     _controllerOtro = TextEditingController();
+    _getCurrentLocation();
     super.initState();
   }
 
@@ -184,7 +185,6 @@ class _EncuestaState extends State<Encuesta> {
                         )
                       ],
                     ),
-               
                     Container(
                       height: ((MediaQuery.of(context).size.height) * .05),
                       width: ((MediaQuery.of(context).size.width)),
@@ -808,7 +808,6 @@ class _EncuestaState extends State<Encuesta> {
                         String _otro;
                         String _edad;
                         String _name;
-                        _getCurrentLocation();
                         if (_controllerNombre.text.isNotEmpty) {
                           _name = _controllerNombre.text.toUpperCase();
                         } else {
@@ -835,17 +834,25 @@ class _EncuestaState extends State<Encuesta> {
                               int _fiebretoscabeza = 0;
                               int _unode = 0;
                               int _viaje = 0;
-                              int _dia  = DateTime.now().day;
-                              int _mes  = DateTime.now().month;
-                              int _year  = DateTime.now().year;
+                              String _dia = retumespal(DateTime.now().day);
+                              String _mes = retumespal(DateTime.now().month);
+                              String _hora = retumespal(DateTime.now().hour);
+                              String _min = retumespal(DateTime.now().minute);
+                              int _year = DateTime.now().year;
+                              int vero = 0;
+                              //var date = DateTime.now();
+                              //var date = "$_mes$_dia$_year";
+                              var date = "$_year$_mes$_dia$vero$_hora$_min";
                               if (check_respirato || check_toracico) {
                                 Firestore.instance
                                     .collection('encuestas')
                                     .document()
                                     .setData({
-                                      'dia':  _dia,
-                                      'mes':  _mes,
-                                      'year':  _year,
+                                  'dia': _dia,
+                                  'mes': _mes,
+                                  'year': _year,
+                                  //'date':  '${date.day}${date.month}${date.year}',
+                                  'date': '$date',
                                   'distrito': '$_currentLocality',
                                   'cp': '$_currentCp',
                                   'estado': '$_currentEstado',
@@ -902,9 +909,11 @@ class _EncuestaState extends State<Encuesta> {
                                           .collection('encuestas')
                                           .document()
                                           .setData({
-                                          'dia':  _dia,
-                                      'mes':  _mes,
-                                      'year':  _year,
+                                        'dia': _dia,
+                                        'mes': _mes,
+                                        'year': _year,
+                                        //'date':  '${date.day}${date.month}${date.year}',
+                                        'date': '$date',
                                         'distrito': '$_currentLocality',
                                         'cp': '$_currentCp',
                                         'estado': '$_currentEstado',
@@ -952,9 +961,11 @@ class _EncuestaState extends State<Encuesta> {
                                           .collection('encuestas')
                                           .document()
                                           .setData({
-                                              'dia':  _dia,
-                                      'mes':  _mes,
-                                      'year':  _year,
+                                        'dia': _dia,
+                                        'mes': _mes,
+                                        //'date':  '${date.day}${date.month}${date.year}',
+                                        'date': '$date',
+                                        'year': _year,
                                         'distrito': '$_currentLocality',
                                         'cp': '$_currentCp',
                                         'estado': '$_currentEstado',
@@ -1004,14 +1015,16 @@ class _EncuestaState extends State<Encuesta> {
                                         .collection('encuestas')
                                         .document()
                                         .setData({
-                                            'dia':  _dia,
-                                      'mes':  _mes,
-                                      'year':  _year,
+                                      'dia': _dia,
+                                      'mes': _mes,
+                                      'year': _year,
+                                      //'date':  '${date.day}${date.month}${date.year}',
+                                      'date': '$date',
                                       'distrito': '$_currentLocality',
                                       'cp': '$_currentCp',
                                       'estado': '$_currentEstado',
                                       'latitud': '$_lati',
-                                        'longitud': '$_longi',
+                                      'longitud': '$_longi',
                                       'res': 0,
                                       'saludo': 'hola',
                                       'nombre': '$_name',
@@ -1055,14 +1068,16 @@ class _EncuestaState extends State<Encuesta> {
                                       .collection('encuestas')
                                       .document()
                                       .setData({
-                                          'dia':  _dia,
-                                      'mes':  _mes,
-                                      'year':  _year,
+                                    'dia': _dia,
+                                    'mes': _mes,
+                                    'year': _year,
+                                    //'date':  '${date.day}${date.month}${date.year}',
+                                    'date': '$date',
                                     'distrito': '$_currentLocality',
                                     'cp': '$_currentCp',
                                     'estado': '$_currentEstado',
                                     'latitud': '$_lati',
-                                        'longitud': '$_longi',
+                                    'longitud': '$_longi',
                                     'res': 0,
                                     'saludo': 'hola',
                                     'nombre': '$_name',
@@ -1198,6 +1213,18 @@ class _EncuestaState extends State<Encuesta> {
       });
     } catch (e) {
       print(e);
+    }
+  }
+
+  String retumespal(int n) {
+    if (n <= 9) {
+      if (n == 0) {
+        return '00';
+      }else{
+        return '0$n';
+      }
+    } else {
+      return '$n';
     }
   }
 }

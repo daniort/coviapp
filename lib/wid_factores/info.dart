@@ -62,6 +62,24 @@ class _InfoState extends State<Info> {
                   ),
                 ),
               ),
+               Padding(
+                padding: const EdgeInsets.only(top:20.0,bottom: 10.0),
+                 child: Center(
+                    child: Text('Project Manager:',
+                        style: GoogleFonts.doHyeon(
+                            color:  Colors.blueGrey, fontSize: 14.0)),
+                  ),
+              
+              ),
+              Padding(
+                padding: const EdgeInsets.all(2.0),
+                 child: Center(
+                    child: Text('Mauel Haro',
+                        style: GoogleFonts.doHyeon(
+                            color:  Colors.blueGrey, fontSize: 18.0)),
+                  ),
+              
+              ),
               Padding(
                 padding: const EdgeInsets.only(top:20.0,bottom: 10.0),
                  child: Center(
@@ -126,6 +144,16 @@ class _InfoState extends State<Info> {
                   ),
               
               ),
+              Padding(
+                padding: const EdgeInsets.all(2.0),
+                 child: Center(
+                    child: Text('Bruno Reimers',
+                        style: GoogleFonts.doHyeon(
+                            color:  Colors.blueGrey, fontSize: 18.0)),
+                  ),
+              
+              ),
+
 
             ],
           ),

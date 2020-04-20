@@ -245,7 +245,7 @@ class _SignosState extends State<Signos> {
                                         child: Padding(
                                           padding: EdgeInsets.only(left: 10.0),
                                           child: Text(
-                                              'Almenos 2 de los siguientes:',
+                                              'Al menos 2 de los siguientes:',
                                               style: GoogleFonts.doHyeon(
                                                   color: Color(0xff0d2a31),
                                                   fontSize: 17.0)),
@@ -430,7 +430,7 @@ class _SignosState extends State<Signos> {
                                         child: Padding(
                                           padding: EdgeInsets.only(left: 10.0),
                                           child: Text(
-                                              'Almenos 1 de los siguientes:',
+                                              'Al menos 1 de los siguientes:',
                                               style: GoogleFonts.doHyeon(
                                                   color: Color(0xff0d2a31),
                                                   fontSize: 17.0)),
@@ -648,7 +648,7 @@ class _SignosState extends State<Signos> {
                                             style: GoogleFonts.doHyeon(
                                                 color: Color(0xff0d2a31),
                                                 fontSize: 18.0)),
-                                        subtitle: Text('Ojos rojos,llorosos.',
+                                        subtitle: Text('Ojos rojos, llorosos.',
                                             style: TextStyle(
                                                 color: Color(0xff0d2a31),
                                                 fontSize: 16.0)),
@@ -694,7 +694,7 @@ class _SignosState extends State<Signos> {
                                         child: Padding(
                                           padding: EdgeInsets.only(left: 10.0),
                                           child: Text(
-                                              'Almenos 1 de los siguientes:',
+                                              'Al menos 1 de los siguientes:',
                                               style: GoogleFonts.doHyeon(
                                                   color: Color(0xff0d2a31),
                                                   fontSize: 17.0)),

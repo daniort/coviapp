@@ -161,7 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Padding(
                                     padding: EdgeInsets.only(left: 10.0),
                                     child: Text(
-                                      'Contesta una encuesta para poder tener una idea de nuestro habitantes',
+                                      'Contesta una encuesta para poder tener una idea de nuestros habitantes',
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         color: Color(0xff0b7a75),
@@ -238,7 +238,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Padding(
                                     padding: EdgeInsets.only(left: 10.0),
                                     child: Text(
-                                      'Informate sobre los factores de Riesgo aquí',
+                                      'Infórmate sobre los factores de riesgo aquí',
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         color: Color(0xff0b7a75),
@@ -315,7 +315,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Padding(
                                     padding: EdgeInsets.only(left: 10.0),
                                     child: Text(
-                                      'Informate sobre como identificar Signos y Síntomas aquí',
+                                      'Infórmate sobre como identificar Signos y Síntomas aquí',
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         color: Color(0xff0b7a75),
@@ -366,7 +366,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                             child: Center(
                               child: FaIcon(
-                                FontAwesomeIcons.stream,
+                                FontAwesomeIcons.handsWash,
                                 color: Color(0xfff0f3f5),
                                 size: 30.0,
                               ),
@@ -392,7 +392,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Padding(
                                     padding: EdgeInsets.only(left: 10.0),
                                     child: Text(
-                                      'Informate sobre lo que debes hacer auí',
+                                      'Infórmate sobre lo que debes hacer aquí',
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         color: Color(0xff0b7a75),
@@ -808,6 +808,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                                                       InkWell(
                                                                     onTap: () {
                                                                       try {
+                                                                        SaveFile()
+                                                                            .save(item['imagen']);
                                                                         Navigator.pop(
                                                                             context);
                                                                         _scaffoldKe
@@ -821,9 +823,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                                                               Color(0xff0d0d0d),
                                                                         ));
                                                                       } on Error catch (e) {
-                                                                        print(
-                                                                            'Error has occured while saving');
-                                                                        //row 'Error has occured while saving';
+                                                                         Navigator.pop(
+                                                                            context);
+                                                                        _scaffoldKe
+                                                                            .currentState
+                                                                            .showSnackBar(SnackBar(
+                                                                          content:
+                                                                              Text('No se pudo Guardar la Imagen'),
+                                                                          duration:
+                                                                              Duration(milliseconds: 1500),
+                                                                          backgroundColor:
+                                                                              Color(0xff0d0d0d),
+                                                                        ));
                                                                       }
                                                                     },
                                                                     child:

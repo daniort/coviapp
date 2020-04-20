@@ -30,8 +30,8 @@ class Menu extends StatelessWidget {
           children: <Widget>[
             Container(
               child: UserAccountsDrawerHeader(
-                accountName: Text("Bienvenida"),
-                accountEmail: Text("A nuestra aplicacion"),
+                accountName: Text("Bienvenidos"),
+                
                 currentAccountPicture:
                     CircleAvatar(backgroundColor: Color(0xfff0f3f5)),
               ),
@@ -89,7 +89,7 @@ class Menu extends StatelessWidget {
                       ),
                       child: ListTile(
                           title: Text(
-                            'Signos y Sintomas',
+                            'Signos y Síntomas',
                             style: TextStyle(color: Color(0xfff0f3f5)),
                           ),
                           leading: FaIcon(
@@ -152,7 +152,7 @@ class Menu extends StatelessWidget {
                       ),
                       child: ListTile(
                           title: Text(
-                            'Enlaces prioritarios',
+                            'Enlaces Prioritarios',
                             style: TextStyle(
                               color: Color(0xfff0f3f5),
                             ),
@@ -184,7 +184,7 @@ class Menu extends StatelessWidget {
                       ),
                       child: ListTile(
                           title: Text(
-                            'Encuesta',
+                            'Encuestas',
                             style: TextStyle(
                               color: Color(0xfff0f3f5),
                             ),
@@ -216,7 +216,7 @@ class Menu extends StatelessWidget {
                       ),
                       child: ListTile(
                           title: Text(
-                            'Mas informacion',
+                            'Más Información',
                             style: TextStyle(
                               color: Color(0xfff0f3f5),
                             ),
