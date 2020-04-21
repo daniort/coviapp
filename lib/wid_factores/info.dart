@@ -1,4 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'dart:convert';
+
+import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,6 +12,10 @@ class Info extends StatefulWidget {
 class _InfoState extends State<Info> {
   @override
   Widget build(BuildContext context) {
+    
+   
+
+  
     return Scaffold(
       backgroundColor: Color(0xff19535f),
       appBar: AppBar(
@@ -27,7 +33,7 @@ class _InfoState extends State<Info> {
           child: Column(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(top: 12.0),
+                padding: const EdgeInsets.only(top: 8.0),
                 child: Container(
                   height: ((MediaQuery.of(context).size.height) * 0.05),
                   child: Center(
@@ -39,12 +45,7 @@ class _InfoState extends State<Info> {
               ),
               Container(
                 height: ((MediaQuery.of(context).size.height) * 0.2),
-                child: CachedNetworkImage(
-                  imageUrl:
-                      "http://ntrzacatecas.com/content/uploads/2019/09/upsz-1-1.jpg",
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                ),
+                child: Image.asset("lib/assets/images/upsz-1-1.jpg"),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 12.0),
@@ -58,7 +59,7 @@ class _InfoState extends State<Info> {
                 ),
               ),
                Padding(
-                padding: const EdgeInsets.only(top:20.0,bottom: 10.0),
+                padding: const EdgeInsets.only(top:10.0,bottom: 5.0),
                  child: Center(
                     child: Text('Project Manager:',
                         style: GoogleFonts.doHyeon(
@@ -67,16 +68,16 @@ class _InfoState extends State<Info> {
               
               ),
               Padding(
-                padding: const EdgeInsets.all(2.0),
+                padding: const EdgeInsets.all(1.0),
                  child: Center(
-                    child: Text('Mauel Haro',
+                    child: Text('Manuel Haro',
                         style: GoogleFonts.doHyeon(
                             color:  Colors.blueGrey, fontSize: 18.0)),
                   ),
               
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20.0, bottom: 10.0),
+                padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                 child: Center(
                   child: Text('Desarrolladores:',
                       style: GoogleFonts.doHyeon(
@@ -84,7 +85,7 @@ class _InfoState extends State<Info> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(2.0),
+                padding: const EdgeInsets.all(1.0),
                 child: Center(
                   child: Text('Juan José Pelaez Villegas',
                       style: GoogleFonts.doHyeon(
@@ -92,7 +93,7 @@ class _InfoState extends State<Info> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(2.0),
+                padding: const EdgeInsets.all(1.0),
                 child: Center(
                   child: Text('Daniel Ortiz Castro',
                       style: GoogleFonts.doHyeon(
@@ -100,7 +101,7 @@ class _InfoState extends State<Info> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20.0, bottom: 10.0),
+                padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                 child: Center(
                   child: Text('Asesores Médicos:',
                       style: GoogleFonts.doHyeon(
@@ -108,7 +109,7 @@ class _InfoState extends State<Info> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(2.0),
+                padding: const EdgeInsets.all(1.0),
                 child: Center(
                   child: Text('Sandy Sierra',
                       style: GoogleFonts.doHyeon(
@@ -116,7 +117,7 @@ class _InfoState extends State<Info> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(2.0),
+                padding: const EdgeInsets.all(1.0),
                 child: Center(
                   child: Text('Manuel Escobar',
                       style: GoogleFonts.doHyeon(
@@ -124,7 +125,7 @@ class _InfoState extends State<Info> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(2.0),
+                padding: const EdgeInsets.all(1.0),
                 child: Center(
                   child: Text('Eduardo Gamez',
                       style: GoogleFonts.doHyeon(
@@ -132,7 +133,7 @@ class _InfoState extends State<Info> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(2.0),
+                padding: const EdgeInsets.all(1.0),
                  child: Center(
                     child: Text('Bruno Reimers',
                         style: GoogleFonts.doHyeon(

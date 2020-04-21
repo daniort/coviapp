@@ -2,13 +2,15 @@ import 'package:covi/wid_factores/warnin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
-
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Encuesta extends StatefulWidget {
+  String email;
+  String name;
+  Encuesta({Key key, @required this.email,  @required this.name}) : super(key: key);
   @override
-  _EncuestaState createState() => _EncuestaState();
+  _EncuestaState createState() => _EncuestaState(email,name);
 }
 
 final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -37,8 +39,12 @@ bool viaje = false;
 bool reunion = false;
 
 class _EncuestaState extends State<Encuesta> {
-  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
 
+  String email;
+  String name;  
+  _EncuestaState(this.email, this.name);  
+  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+ 
   Position _currentPosition;
   String _currentLocality;
   String _currentCp;
@@ -47,6 +53,8 @@ class _EncuestaState extends State<Encuesta> {
   String _longi;
 
   void initState() {
+    print('$email');
+    print('$name');
     _controllerNombre = TextEditingController();
     _controllerEdad = TextEditingController();
     _controllerOtro = TextEditingController();
@@ -103,12 +111,14 @@ class _EncuestaState extends State<Encuesta> {
                                 color: Color(0xff0d2a31), fontSize: 15.0)),
                       ),
                     ),
+                    if(name == 'null' || name == "null")
                     Container(
                       height: ((MediaQuery.of(context).size.height) * .08),
                       color: Color(0xfff0f3f5),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 15.0),
                         child: TextField(
+                          
                           controller: _controllerNombre,
                           decoration:
                               InputDecoration(hintText: 'Nombre Completo:'),
@@ -804,7 +814,7 @@ class _EncuestaState extends State<Encuesta> {
                         if (_controllerNombre.text.isNotEmpty) {
                           _name = _controllerNombre.text.toUpperCase();
                         } else {
-                          _name = "null";
+                          _name = name;                          
                         }
                         if (_controllerEdad.text.isNotEmpty) {
                           _edad = _controllerEdad.text.toUpperCase();
@@ -844,6 +854,7 @@ class _EncuestaState extends State<Encuesta> {
                                   'dia': _dia,
                                   'mes': _mes,
                                   'year': _year,
+
                                   //'date':  '${date.day}${date.month}${date.year}',
                                   'date': '$date',
                                   'distrito': '$_currentLocality',
@@ -852,6 +863,7 @@ class _EncuestaState extends State<Encuesta> {
                                   'latitud': '$_lati',
                                   'longitud': '$_longi',
                                   'nombre': '$_name',
+                                  'correo': '$email',
                                   'edad': '$_edad',
                                   'sexo': '$sex',
                                   'check_cancer': check_cancer,
@@ -914,6 +926,7 @@ class _EncuestaState extends State<Encuesta> {
                                         'res': 1,
                                         'saludo': 'hola',
                                         'nombre': '$_name',
+                                        'correo': '$email',
                                         'edad': '$_edad',
                                         'sexo': '$sex',
                                         'check_cancer': check_cancer,
@@ -964,6 +977,7 @@ class _EncuestaState extends State<Encuesta> {
                                         'res': 1,
                                         'saludo': 'hola',
                                         'nombre': '$_name',
+                                        'correo': '$email',
                                         'edad': '$_edad',
                                         'sexo': '$sex',
                                         'check_cancer': check_cancer,
@@ -1016,6 +1030,7 @@ class _EncuestaState extends State<Encuesta> {
                                       'res': 0,
                                       'saludo': 'hola',
                                       'nombre': '$_name',
+                                      'correo': '$email',
                                       'edad': '$_edad',
                                       'sexo': '$sex',
                                       'check_cancer': check_cancer,
@@ -1068,6 +1083,7 @@ class _EncuestaState extends State<Encuesta> {
                                     'res': 0,
                                     'saludo': 'hola',
                                     'nombre': '$_name',
+                                    'correo': '$email',
                                     'edad': '$_edad',
                                     'sexo': '$sex',
                                     'check_cancer': check_cancer,
