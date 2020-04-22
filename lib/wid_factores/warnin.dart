@@ -235,12 +235,7 @@ class Warnin extends StatelessWidget {
               onTap: () => {
                 Navigator.pop(context),
                 Navigator.pop(context),
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyHomePage(),
-                  ),
-                ),
+              
               },
               child: Container(
                 width: MediaQuery.of(context).size.width,
@@ -497,12 +492,12 @@ class Urgencias extends StatelessWidget {
               onTap: () => {
                 Navigator.pop(context),
                 Navigator.pop(context),
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyHomePage(),
-                  ),
-                ),
+               // Navigator.push(
+                 // context,
+                  //MaterialPageRoute(
+//    builder: (context) => MyHomePage(),
+                  //),
+                //),
               },
               child: Container(
                 width: MediaQuery.of(context).size.width,
@@ -757,14 +752,10 @@ class Sospecha extends StatelessWidget {
             flex: 1,
             child: InkWell(
               onTap: () => {
+                 Navigator.pop(context),
                 Navigator.pop(context),
-                Navigator.pop(context),
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyHomePage(),
-                  ),
-                ),
+              
+                
               },
               child: Container(
                 width: MediaQuery.of(context).size.width,
