@@ -12,6 +12,7 @@ import 'package:covi/wid_factores/signos.dart';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -173,7 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     ),
                                                     onPressed: () {
                                                       String _email;
-                                                      
+
                                                       String _error;
                                                       String _nombre;
                                                       if (_emailController.text
@@ -181,11 +182,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                                           _passwordController
                                                               .text
                                                               .isNotEmpty) {
-                                                        _email =_emailController.text;
-                                                        var bytes = utf8.encode(_passwordController.text); // data being hashed
-                                                        var _pass =sha1.convert(bytes);
-                                                            print('xcvbnm');
-                                                            print(_pass);
+                                                        _email =
+                                                            _emailController
+                                                                .text;
+                                                        var bytes = utf8.encode(
+                                                            _passwordController
+                                                                .text); // data being hashed
+                                                        var _pass =
+                                                            sha1.convert(bytes);
+                                                        print('xcvbnm');
+                                                        print(_pass);
 
                                                         try {
                                                           Firestore.instance
@@ -200,7 +206,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                                                     .documents
                                                                     .forEach(
                                                                         (doc) {
-                                                                  if (_pass.toString() == doc["pass"]) {
+                                                                  if (_pass
+                                                                          .toString() ==
+                                                                      doc["pass"]) {
                                                                     print(
                                                                         'correo y contraseña bien');
                                                                     setState(
@@ -347,6 +355,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                                                             labelText: 'Nombre Completo'),
                                                                         keyboardType:
                                                                             TextInputType.emailAddress,
+                                                                            inputFormatters: [
+                                                                            BlacklistingTextInputFormatter(RegExp("[0-9]")),
+                                                                          ],
                                                                         //autovalidate: true,
                                                                         autocorrect:
                                                                             false,
@@ -416,7 +427,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                                                         Navigator.pop(context);
                                                                                         Navigator.push(
                                                                                           context,
-                                                                                          MaterialPageRoute(builder: (context) => Encuesta(email: nombre, name: nombre)),
+                                                                                          MaterialPageRoute(builder: (context) => Encuesta(email: correo, name: nombre)),
                                                                                         );
                                                                                       }
                                                                                     }
@@ -1783,6 +1794,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                                                           decoration: InputDecoration(
                                                                               icon: Icon(Icons.person),
                                                                               labelText: 'Nombre Completo'),
+                                                                          inputFormatters: [
+                                                                            BlacklistingTextInputFormatter(RegExp("[0-9]")),
+                                                                          ],
                                                                           keyboardType:
                                                                               TextInputType.emailAddress,
                                                                           //autovalidate: true,
@@ -1850,7 +1864,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                                                           Navigator.pop(context);
                                                                                           Navigator.push(
                                                                                             context,
-                                                                                            MaterialPageRoute(builder: (context) => Encuesta(email: nombre, name: nombre)),
+                                                                                            MaterialPageRoute(builder: (context) => Encuesta(email: correo, name: nombre)),
                                                                                           );
                                                                                         }
                                                                                       }
