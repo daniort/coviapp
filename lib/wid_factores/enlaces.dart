@@ -12,7 +12,7 @@ class _EnlacesState extends State<Enlaces> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff19535f),
+      backgroundColor: Color(0xffdadad9),
         appBar: AppBar(
           title: Text('Enlaces Prioritarios'),
         ),
@@ -46,7 +46,7 @@ class _EnlacesState extends State<Enlaces> {
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(10.0),
                                     bottomLeft: Radius.circular(10.0)),
-                                color: Color(0xff0d2a31),
+                                color: Color(0xff38786a),
                               ),
                               child: Center(
                                 child: FaIcon(
@@ -70,7 +70,7 @@ class _EnlacesState extends State<Enlaces> {
                                         padding: EdgeInsets.only(left: 10.0),
                                         child: Text('Secretaría de Salud del Estado de Zacatecas',
                                             style: GoogleFonts.doHyeon(
-                                                color: Color(0xff0d2a31),
+                                                color: Color(0xff38786a),
                                                 fontSize: 20.0)),
                                       ),
                                     ),
@@ -120,7 +120,7 @@ class _EnlacesState extends State<Enlaces> {
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(10.0),
                                     bottomLeft: Radius.circular(10.0)),
-                                color: Color(0xff0d2a31),
+                                color: Color(0xff38786a),
                               ),
                               child: Center(
                                 child: FaIcon(
@@ -144,7 +144,7 @@ class _EnlacesState extends State<Enlaces> {
                                         padding: EdgeInsets.only(left: 10.0),
                                         child: Text('Llame al 911',
                                             style: GoogleFonts.doHyeon(
-                                                color: Color(0xff0d2a31),
+                                                color: Color(0xff38786a),
                                                 fontSize: 20.0)),
                                       ),
                                     ),
@@ -194,7 +194,7 @@ class _EnlacesState extends State<Enlaces> {
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(10.0),
                                     bottomLeft: Radius.circular(10.0)),
-                                color: Color(0xff0d2a31),
+                                color: Color(0xff38786a),
                               ),
                               child: Center(
                                 child: FaIcon(
@@ -218,7 +218,7 @@ class _EnlacesState extends State<Enlaces> {
                                         padding: EdgeInsets.only(left: 10.0),
                                         child: Text('Llame al 800-00-44-800',
                                             style: GoogleFonts.doHyeon(
-                                                color: Color(0xff0d2a31),
+                                                color: Color(0xff38786a),
                                                 fontSize: 20.0)),
                                       ),
                                     ),

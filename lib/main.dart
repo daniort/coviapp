@@ -24,11 +24,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'COVID AutoDx',
       theme: ThemeData(
-        primaryColor: Color(0xff0d2a31),
-        secondaryHeaderColor: Color(0xff38786a),
-        accentColor: Colors.green,
-        primarySwatch: Colors.green,
-      ),
+          //primaryColor: Color(0xffED6A5A),
+          primaryColor: Color(0xff212D40),
+          //secondaryHeaderColor: Color(0xffca3c25),
+          appBarTheme: AppBarTheme(
+            color: Color(0xffED6A5A),
+          )),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -65,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
     queryData = MediaQuery.of(context);
     return Scaffold(
       key: _scaffoldKe,
-      backgroundColor: Color(0xff19535f),
+      backgroundColor: Color(0xffdadad9),
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
@@ -76,17 +77,18 @@ class _MyHomePageState extends State<MyHomePage> {
               pinned: true,
               snap: false,
               flexibleSpace: FlexibleSpaceBar(
-                  stretchModes: <StretchMode>[
-                    StretchMode.zoomBackground,
-                    StretchMode.blurBackground,
-                    StretchMode.fadeTitle,
-                  ],
-                  //title: Text('Covid Report'),
-                  centerTitle: false,
-                  background: Image.network(
-                    "https://image.freepik.com/free-photo/3d-render-conceptual-pandemic-epidemic-virus-medical-health-vaccine-research-microscopic-magnification-green-corona-virus-2019-ncov-outbreak-forms-like-sars-mers-can-be-lethal_166094-85.jpg",
-                    fit: BoxFit.cover,
-                  )),
+                stretchModes: <StretchMode>[
+                  StretchMode.zoomBackground,
+                  StretchMode.blurBackground,
+                  StretchMode.fadeTitle,
+                ],
+                //title: Text('Covid Report'),
+                centerTitle: false,
+                background: Image.asset(
+                  "lib/assets/images/3703626.png",
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
             SliverList(
               delegate: SliverChildListDelegate([
@@ -355,9 +357,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                                                             labelText: 'Nombre Completo'),
                                                                         keyboardType:
                                                                             TextInputType.emailAddress,
-                                                                            inputFormatters: [
-                                                                            BlacklistingTextInputFormatter(RegExp("[0-9]")),
-                                                                          ],
+                                                                        inputFormatters: [
+                                                                          BlacklistingTextInputFormatter(
+                                                                              RegExp("[0-9]")),
+                                                                        ],
                                                                         //autovalidate: true,
                                                                         autocorrect:
                                                                             false,
@@ -613,7 +616,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(10.0),
                                   bottomLeft: Radius.circular(10.0)),
-                              color: Color(0xff0d2a31),
+                              color: Color(0xff38786a),
                             ),
                             child: Center(
                               child: FaIcon(
@@ -636,7 +639,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       padding: EdgeInsets.only(left: 10.0),
                                       child: Text('Encuesta',
                                           style: GoogleFonts.doHyeon(
-                                              color: Color(0xff0d2a31),
+                                              color: Color(0xff0b7a75),
                                               fontSize: 20.0)),
                                     ),
                                   ),
@@ -690,7 +693,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(10.0),
                                   bottomLeft: Radius.circular(10.0)),
-                              color: Color(0xff0d2a31),
+                              color: Color(0xff38786a),
                             ),
                             child: Center(
                               child: FaIcon(
@@ -713,7 +716,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       padding: EdgeInsets.only(left: 10.0),
                                       child: Text('Factores de Riesgo',
                                           style: GoogleFonts.doHyeon(
-                                              color: Color(0xff0d2a31),
+                                              color: Color(0xff38786a),
                                               fontSize: 18.0)),
                                     ),
                                   ),
@@ -767,7 +770,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(10.0),
                                   bottomLeft: Radius.circular(10.0)),
-                              color: Color(0xff0d2a31),
+                              color: Color(0xff38786a),
                             ),
                             child: Center(
                               child: FaIcon(
@@ -790,7 +793,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       padding: EdgeInsets.only(left: 10.0),
                                       child: Text('Signos y Síntomas',
                                           style: GoogleFonts.doHyeon(
-                                              color: Color(0xff0d2a31),
+                                              color: Color(0xff0b7a75),
                                               fontSize: 18.0)),
                                     ),
                                   ),
@@ -844,7 +847,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(10.0),
                                   bottomLeft: Radius.circular(10.0)),
-                              color: Color(0xff0d2a31),
+                              color: Color(0xff38786a),
                             ),
                             child: Center(
                               child: FaIcon(
@@ -867,7 +870,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       padding: EdgeInsets.only(left: 10.0),
                                       child: Text('Recomendaciones',
                                           style: GoogleFonts.doHyeon(
-                                              color: Color(0xff0d2a31),
+                                              color: Color(0xff38786a),
                                               fontSize: 18.0)),
                                     ),
                                   ),
@@ -921,7 +924,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(10.0),
                                   bottomLeft: Radius.circular(10.0)),
-                              color: Color(0xff0d2a31),
+                              color: Color(0xff38786a),
                             ),
                             child: Center(
                               child: FaIcon(
@@ -944,7 +947,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       padding: EdgeInsets.only(left: 10.0),
                                       child: Text('Enlaces Prioritarios',
                                           style: GoogleFonts.doHyeon(
-                                              color: Color(0xff0d2a31),
+                                              color: Color(0xff38786a),
                                               fontSize: 18.0)),
                                     ),
                                   ),
@@ -1028,7 +1031,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   child: Center(
                                     child: FaIcon(
                                       FontAwesomeIcons.inbox,
-                                      color: Color(0xff19535f),
+                                      color: Color(0xff364156),
                                       size: 30.0,
                                     ),
                                   ),
@@ -1039,8 +1042,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                   child: Center(
                                     child: Text('Información Reciente',
-                                        style: GoogleFonts.doHyeon(
-                                            color: Color(0xff19535f),
+                                        style: TextStyle(
+                                            color: Color(0xff364156),
                                             fontSize: 20.0)),
                                   ),
                                 ),
@@ -1055,7 +1058,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             borderRadius: BorderRadius.only(
                               topRight: Radius.circular(30.0),
                             ),
-                            color: Color(0xff19535f),
+                            color: Color(0xff364156),
+
                           ),
                           child: StreamBuilder<QuerySnapshot>(
                             stream: Firestore.instance
@@ -1071,7 +1075,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     snapshot.data.documents;
 
                                 return Carousel(
-                                  dotBgColor: Color(0xff0d2a31),
+                                  dotBgColor: Color(0xff212D40),
                                   animationDuration:
                                       const Duration(milliseconds: 2050),
                                   images: [
@@ -1141,7 +1145,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                                       .circular(
                                                                           30.0)),
                                                           color: Color.fromRGBO(
-                                                              13, 42, 49, 0.99),
+                                                              33, 45, 64, 0.99),
                                                         ),
                                                         width: queryData
                                                             .size.width,
@@ -1357,7 +1361,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     .width)),
                                                 decoration: BoxDecoration(
                                                   color: Color.fromRGBO(
-                                                      13, 42, 49, 0.90),
+                                                      33, 45, 64, 0.90),
                                                   borderRadius:
                                                       BorderRadius.only(
                                                           topRight:
@@ -1400,14 +1404,21 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       drawer: Drawer(
         child: Container(
-          decoration: BoxDecoration(color: Color(0xff0d2a31)),
+          decoration: BoxDecoration(color: Color(0xff212D40)),
           child: new ListView(
             children: <Widget>[
               Container(
                 child: UserAccountsDrawerHeader(
                   accountName: Text("Bienvenidos a \nCOVID AutoDx"),
-                  currentAccountPicture:
-                      CircleAvatar(backgroundColor: Color(0xfff0f3f5)),
+                  currentAccountPicture: FittedBox(
+                    
+
+                      fit: BoxFit.contain,
+                      child:
+                        Image.asset(
+                          "lib/assets/images/logocovid.png",
+                          fit: BoxFit.cover,                        
+                      )),
                 ),
               ),
               Column(
@@ -1427,7 +1438,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Container(
                         decoration: BoxDecoration(
                           border:
-                              Border(top: BorderSide(color: Color(0xff19535f))),
+                              Border(top: BorderSide(color: Color(0xff212D40))),
                         ),
                         child: ListTile(
                             title: Text(
@@ -1459,7 +1470,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Container(
                         decoration: BoxDecoration(
                           border:
-                              Border(top: BorderSide(color: Color(0xff0d2a31))),
+                              Border(top: BorderSide(color: Color(0xff212D40))),
                         ),
                         child: ListTile(
                             title: Text(
@@ -1489,7 +1500,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Container(
                         decoration: BoxDecoration(
                           border:
-                              Border(top: BorderSide(color: Color(0xff0d2a31))),
+                              Border(top: BorderSide(color: Color(0xff212D40))),
                         ),
                         child: ListTile(
                           title: Text(
@@ -1522,7 +1533,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Container(
                         decoration: BoxDecoration(
                           border:
-                              Border(top: BorderSide(color: Color(0xff0d2a31))),
+                              Border(top: BorderSide(color: Color(0xff212D40))),
                         ),
                         child: ListTile(
                             title: Text(
@@ -2038,7 +2049,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Container(
                         decoration: BoxDecoration(
                           border:
-                              Border(top: BorderSide(color: Color(0xff0d2a31))),
+                              Border(top: BorderSide(color: Color(0xff212D40))),
                         ),
                         child: ListTile(
                             title: Text(
@@ -2070,7 +2081,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Container(
                         decoration: BoxDecoration(
                           border:
-                              Border(top: BorderSide(color: Color(0xff0d2a31))),
+                              Border(top: BorderSide(color: Color(0xff11151C))),
                         ),
                         child: ListTile(
                             title: Text(

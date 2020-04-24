@@ -53,6 +53,7 @@ class _EncuestaState extends State<Encuesta> {
   String _longi;
 
   void initState() {
+    //primaryColor: Color(0xffED6A5A),
     print('$email');
     print('$name');
     _controllerNombre = TextEditingController();
@@ -66,8 +67,9 @@ class _EncuestaState extends State<Encuesta> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Color(0xff19535f),
+      backgroundColor: Color(0xffdadad9),
       appBar: AppBar(
+        backgroundColor: Color(0xffED6A5A),
         title: Text('Encuestas'),
       ),
       body: Padding(
@@ -828,8 +830,8 @@ class _EncuestaState extends State<Encuesta> {
                         }
                         _scaffoldKey.currentState.showSnackBar(SnackBar(
                           content: Text('Presiona para Confirmar:'),
-                          duration: Duration(milliseconds: 3000),
-                          backgroundColor: Color(0xff92140c),
+                          duration: Duration(milliseconds: 2500),
+                          backgroundColor: Color(0xffca3c25),
                           action: SnackBarAction(
                             label: 'Confirmar',
                             textColor: Color(0xffffffff),
@@ -1154,13 +1156,13 @@ class _EncuestaState extends State<Encuesta> {
                             bottomRight: Radius.circular(10.0),
                             bottomLeft: Radius.circular(10.0),
                           ),
-                          color: Color(0xff0d2a31),
+                          color: Color(0xff38786a),
                         ),
                         child: Center(
                           child: Text(
                             'Enviar Encuesta',
                             style: GoogleFonts.doHyeon(
-                                color: Color(0xffd7c9aa), fontSize: 20.0),
+                                color: Colors.white, fontSize: 20.0),
                           ),
                         ),
                       ),

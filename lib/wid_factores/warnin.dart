@@ -9,7 +9,7 @@ class Warnin extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color(0xff0d2a31),
+        color: Color(0xff38786a),
         borderRadius: BorderRadius.circular(30.0),
       ),
       width: MediaQuery.of(context).size.width,
@@ -99,7 +99,7 @@ class Warnin extends StatelessWidget {
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(10.0),
                                     bottomLeft: Radius.circular(10.0)),
-                                color: Color(0xff0d2a31),
+                                color: Color(0xff38786a),
                               ),
                               child: Center(
                                 child: FaIcon(
@@ -123,7 +123,7 @@ class Warnin extends StatelessWidget {
                                         padding: EdgeInsets.only(left: 10.0),
                                         child: Text('Quedate en Casa',
                                             style: GoogleFonts.doHyeon(
-                                                color: Color(0xff0d2a31),
+                                                color: Color(0xff38786a),
                                                 fontSize: 18.0)),
                                       ),
                                     ),
@@ -175,7 +175,7 @@ class Warnin extends StatelessWidget {
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(10.0),
                                     bottomLeft: Radius.circular(10.0)),
-                                color: Color(0xff0d2a31),
+                                color: Color(0xff38786a),
                               ),
                               child: Center(
                                 child: FaIcon(
@@ -199,7 +199,7 @@ class Warnin extends StatelessWidget {
                                         padding: EdgeInsets.only(left: 10.0),
                                         child: Text('Recomendaciones',
                                             style: GoogleFonts.doHyeon(
-                                                color: Color(0xff0d2a31),
+                                                color: Color(0xff38786a),
                                                 fontSize: 18.0)),
                                       ),
                                     ),
@@ -240,7 +240,7 @@ class Warnin extends StatelessWidget {
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  color: Color(0xff0d2a31),
+                  color: Color(0xff38786a),
                 ),
                 child: Center(
                   child: Text(
@@ -525,7 +525,7 @@ class Sospecha extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color(0xff92140c),
+        color: Color(0xffca3c25),
         borderRadius: BorderRadius.circular(30.0),
       ),
       width: MediaQuery.of(context).size.width,
@@ -616,7 +616,7 @@ class Sospecha extends StatelessWidget {
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(10.0),
                                     bottomLeft: Radius.circular(10.0)),
-                                color: Color(0xff92140c),
+                                color: Color(0xffca3c25),
                               ),
                               child: Center(
                                 child: FaIcon(
@@ -693,7 +693,7 @@ class Sospecha extends StatelessWidget {
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(10.0),
                                     bottomLeft: Radius.circular(10.0)),
-                                color: Color(0xff92140c),
+                                color: Color(0xffca3c25),
                               ),
                               child: Center(
                                 child: FaIcon(

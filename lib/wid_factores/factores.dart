@@ -11,7 +11,7 @@ class _FactoresState extends State<Factores> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff19535f),
+      backgroundColor: Color(0xffdadad9),
       appBar: AppBar(
         title: Text('Factores de Riesgo'),
       ),
@@ -42,7 +42,7 @@ class _FactoresState extends State<Factores> {
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10.0),
                                 bottomLeft: Radius.circular(10.0)),
-                            color: Color(0xff0d2a31),
+                            color: Color(0xff38786a),
                           ),
                           child: Center(
                             child: FaIcon(
@@ -64,9 +64,9 @@ class _FactoresState extends State<Factores> {
                                   child: Padding(
                                     padding: EdgeInsets.only(left: 10.0),
                                     child: Text('Ser Mayor de 65 Años',
-                                        style: GoogleFonts.doHyeon(
-                                            color: Color(0xff0d2a31),
-                                            fontSize: 20.0)),
+                                        style: TextStyle(
+                                            color: Color(0xff38786a),
+                                            fontSize: 18.0)),
                                   ),
                                 ),
                               ],
@@ -100,7 +100,7 @@ class _FactoresState extends State<Factores> {
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10.0),
                                 bottomLeft: Radius.circular(10.0)),
-                            color: Color(0xff0d2a31),
+                            color: Color(0xff38786a),
                           ),
                           child: Center(
                             child: FaIcon(
@@ -122,9 +122,9 @@ class _FactoresState extends State<Factores> {
                                   child: Padding(
                                     padding: EdgeInsets.only(left: 10.0),
                                     child: Text('Cáncer',
-                                        style: GoogleFonts.doHyeon(
-                                            color: Color(0xff0d2a31),
-                                            fontSize: 20.0)),
+                                        style: TextStyle(
+                                            color: Color(0xff38786a),
+                                            fontSize: 18.0)),
                                   ),
                                 ),
                               ],
@@ -158,7 +158,7 @@ class _FactoresState extends State<Factores> {
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10.0),
                                 bottomLeft: Radius.circular(10.0)),
-                            color: Color(0xff0d2a31),
+                            color: Color(0xff38786a),
                           ),
                           child: Center(
                             child: FaIcon(
@@ -180,9 +180,9 @@ class _FactoresState extends State<Factores> {
                                   child: Padding(
                                     padding: EdgeInsets.only(left: 10.0),
                                     child: Text('Cardiovascular',
-                                        style: GoogleFonts.doHyeon(
-                                            color: Color(0xff0d2a31),
-                                            fontSize: 20.0)),
+                                        style: TextStyle(
+                                            color: Color(0xff38786a),
+                                            fontSize: 18.0)),
                                   ),
                                 ),
                               ],
@@ -216,7 +216,7 @@ class _FactoresState extends State<Factores> {
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10.0),
                                 bottomLeft: Radius.circular(10.0)),
-                            color: Color(0xff0d2a31),
+                            color: Color(0xff38786a),
                           ),
                           child: Center(
                             child: FaIcon(
@@ -238,9 +238,9 @@ class _FactoresState extends State<Factores> {
                                   child: Padding(
                                     padding: EdgeInsets.only(left: 10.0),
                                     child: Text('Diabetes 1 y 2',
-                                        style: GoogleFonts.doHyeon(
-                                            color: Color(0xff0d2a31),
-                                            fontSize: 20.0)),
+                                        style: TextStyle(
+                                            color: Color(0xff38786a),
+                                            fontSize: 18.0)),
                                   ),
                                 ),
                               ],
@@ -274,7 +274,7 @@ class _FactoresState extends State<Factores> {
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10.0),
                                 bottomLeft: Radius.circular(10.0)),
-                            color: Color(0xff0d2a31),
+                            color: Color(0xff38786a),
                           ),
                           child: Center(
                             child: FaIcon(
@@ -296,9 +296,9 @@ class _FactoresState extends State<Factores> {
                                   child: Padding(
                                     padding: EdgeInsets.only(left: 10.0),
                                     child: Text('Diabetes Gestacional',
-                                        style: GoogleFonts.doHyeon(
-                                            color: Color(0xff0d2a31),
-                                            fontSize: 20.0)),
+                                        style: TextStyle(
+                                            color: Color(0xff38786a),
+                                            fontSize: 18.0)),
                                   ),
                                 ),
                               ],
@@ -332,7 +332,7 @@ class _FactoresState extends State<Factores> {
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10.0),
                                 bottomLeft: Radius.circular(10.0)),
-                            color: Color(0xff0d2a31),
+                            color: Color(0xff38786a),
                           ),
                           child: Center(
                             child: FaIcon(
@@ -354,9 +354,9 @@ class _FactoresState extends State<Factores> {
                                   child: Padding(
                                     padding: EdgeInsets.only(left: 10.0),
                                     child: Text('Embarazo',
-                                        style: GoogleFonts.doHyeon(
-                                            color: Color(0xff0d2a31),
-                                            fontSize: 20.0)),
+                                        style: TextStyle(
+                                            color: Color(0xff38786a),
+                                            fontSize: 18.0)),
                                   ),
                                 ),
                               ],
@@ -390,7 +390,7 @@ class _FactoresState extends State<Factores> {
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10.0),
                                 bottomLeft: Radius.circular(10.0)),
-                            color: Color(0xff0d2a31),
+                            color: Color(0xff38786a),
                           ),
                           child: Center(
                             child: FaIcon(
@@ -412,9 +412,9 @@ class _FactoresState extends State<Factores> {
                                   child: Padding(
                                     padding: EdgeInsets.only(left: 10.0),
                                     child: Text('Enfermedad Pulmonar',
-                                        style: GoogleFonts.doHyeon(
-                                            color: Color(0xff0d2a31),
-                                            fontSize: 20.0)),
+                                        style: TextStyle(
+                                            color: Color(0xff38786a),
+                                            fontSize: 18.0)),
                                   ),
                                 ),
                               ],
@@ -448,7 +448,7 @@ class _FactoresState extends State<Factores> {
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10.0),
                                 bottomLeft: Radius.circular(10.0)),
-                            color: Color(0xff0d2a31),
+                            color: Color(0xff38786a),
                           ),
                           child: Center(
                             child: FaIcon(
@@ -470,9 +470,9 @@ class _FactoresState extends State<Factores> {
                                   child: Padding(
                                     padding: EdgeInsets.only(left: 10.0),
                                     child: Text('VIH',
-                                        style: GoogleFonts.doHyeon(
-                                            color: Color(0xff0d2a31),
-                                            fontSize: 20.0)),
+                                        style: TextStyle(
+                                            color: Color(0xff38786a),
+                                            fontSize: 18.0)),
                                   ),
                                 ),
                               ],

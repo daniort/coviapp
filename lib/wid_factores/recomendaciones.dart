@@ -12,7 +12,7 @@ class _RecomendacionesState extends State<Recomendaciones> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff19535f),
+      backgroundColor: Color(0xffdadad9),
       appBar: AppBar(
         title: Text('Recomendaciones'),
       ),
@@ -45,7 +45,7 @@ class _RecomendacionesState extends State<Recomendaciones> {
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10.0),
                               bottomLeft: Radius.circular(10.0)),
-                          color: Color(0xff0d2a31),
+                          color: Color(0xff38786a),
                         ),
                         child: Center(
                           child: FaIcon(
@@ -68,7 +68,7 @@ class _RecomendacionesState extends State<Recomendaciones> {
                                   padding: EdgeInsets.only(left: 10.0),
                                   child: Text('Notificación Inmediata',
                                       style: GoogleFonts.doHyeon(
-                                          color: Color(0xff0d2a31),
+                                          color: Color(0xff38786a),
                                           fontSize: 20.0)),
                                 ),
                               ),
@@ -117,7 +117,7 @@ class _RecomendacionesState extends State<Recomendaciones> {
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10.0),
                               bottomLeft: Radius.circular(10.0)),
-                          color: Color(0xff0d2a31),
+                          color: Color(0xff38786a),
                         ),
                         child: Center(
                           child: FaIcon(
@@ -140,7 +140,7 @@ class _RecomendacionesState extends State<Recomendaciones> {
                                   padding: EdgeInsets.only(left: 10.0),
                                   child: Text('No Salgas de Casa',
                                       style: GoogleFonts.doHyeon(
-                                          color: Color(0xff0d2a31),
+                                          color: Color(0xff38786a),
                                           fontSize: 20.0)),
                                 ),
                               ),
@@ -192,7 +192,7 @@ class _RecomendacionesState extends State<Recomendaciones> {
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10.0),
                               bottomLeft: Radius.circular(10.0)),
-                          color: Color(0xff0d2a31),
+                          color: Color(0xff38786a),
                         ),
                         child: Center(
                           child: FaIcon(
@@ -215,7 +215,7 @@ class _RecomendacionesState extends State<Recomendaciones> {
                                   padding: EdgeInsets.only(left: 10.0),
                                   child: Text('Medidas de Higiene',
                                       style: GoogleFonts.doHyeon(
-                                          color: Color(0xff0d2a31),
+                                          color: Color(0xff38786a),
                                           fontSize: 20.0)),
                                 ),
                               ),

@@ -11,7 +11,7 @@ class _SignosState extends State<Signos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xff19535f),
+        backgroundColor: Color(0xffdadad9),
         appBar: AppBar(
           title: Text('Signos y Síntomas'),
         ),
@@ -42,7 +42,7 @@ class _SignosState extends State<Signos> {
                             height:
                                 ((MediaQuery.of(context).size.height) * .05),
                             decoration: BoxDecoration(
-                              color: Color(0xff92140c),
+                              color: Color(0xff364156),
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10.0),
                                 topRight: Radius.circular(10.0),
@@ -64,7 +64,7 @@ class _SignosState extends State<Signos> {
                                 height: ((MediaQuery.of(context).size.height) *
                                     .10),
                                 decoration: BoxDecoration(
-                                  color: Color(0xff0d2a31),
+                                  color: Color(0xff38786a),
                                 ),
                                 child: Center(
                                   child: FaIcon(
@@ -123,7 +123,7 @@ class _SignosState extends State<Signos> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(10.0)),
-                                  color: Color(0xff0d2a31),
+                                  color: Color(0xff38786a),
                                 ),
                                 child: Center(
                                   child: FaIcon(
@@ -197,7 +197,7 @@ class _SignosState extends State<Signos> {
                             height:
                                 ((MediaQuery.of(context).size.height) * .05),
                             decoration: BoxDecoration(
-                              color: Color(0xff92140c),
+                              color: Color(0xff364156),
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10.0),
                                 topRight: Radius.circular(10.0),
@@ -210,7 +210,7 @@ class _SignosState extends State<Signos> {
                                       fontSize: 18.0)),
                             ),
                           ),
-                          Row(
+                            Row(
                             children: <Widget>[
                               Container(
                                 width:
@@ -218,12 +218,12 @@ class _SignosState extends State<Signos> {
                                 height: ((MediaQuery.of(context).size.height) *
                                     .05),
                                 decoration: BoxDecoration(
-                                  color: Color(0xffd7c9aa),
+                                  color: Color(0xff364156),
                                 ),
                                 child: Center(
                                   child: FaIcon(
                                     FontAwesomeIcons.plus,
-                                    color: Color(0xff0d2a31),
+                                    color: Color(0xffdadad9),
                                     size: 20.0,
                                   ),
                                 ),
@@ -265,7 +265,7 @@ class _SignosState extends State<Signos> {
                                 height: ((MediaQuery.of(context).size.height) *
                                     .08),
                                 decoration: BoxDecoration(
-                                  color: Color(0xff0d2a31),
+                                  color: Color(0xff38786a),
                                 ),
                                 child: Center(
                                   child: FaIcon(
@@ -311,7 +311,7 @@ class _SignosState extends State<Signos> {
                                 height: ((MediaQuery.of(context).size.height) *
                                     .08),
                                 decoration: BoxDecoration(
-                                  color: Color(0xff0d2a31),
+                                  color: Color(0xff38786a),
                                 ),
                                 child: Center(
                                   child: FaIcon(
@@ -357,7 +357,7 @@ class _SignosState extends State<Signos> {
                                 height: ((MediaQuery.of(context).size.height) *
                                     .08),
                                 decoration: BoxDecoration(
-                                  color: Color(0xff0d2a31),
+                                  color: Color(0xff38786a),
                                 ),
                                 child: Center(
                                   child: FaIcon(
@@ -395,7 +395,7 @@ class _SignosState extends State<Signos> {
                               )
                             ],
                           ),
-                          Row(
+                           Row(
                             children: <Widget>[
                               Container(
                                 width:
@@ -403,12 +403,12 @@ class _SignosState extends State<Signos> {
                                 height: ((MediaQuery.of(context).size.height) *
                                     .05),
                                 decoration: BoxDecoration(
-                                  color: Color(0xffd7c9aa),
+                                  color: Color(0xff364156),
                                 ),
                                 child: Center(
                                   child: FaIcon(
                                     FontAwesomeIcons.plus,
-                                    color: Color(0xff0d2a31),
+                                    color: Color(0xffdadad9),
                                     size: 20.0,
                                   ),
                                 ),
@@ -450,7 +450,7 @@ class _SignosState extends State<Signos> {
                                 height: ((MediaQuery.of(context).size.height) *
                                     .08),
                                 decoration: BoxDecoration(
-                                  color: Color(0xff0d2a31),
+                                  color: Color(0xff38786a),
                                 ),
                                 child: Center(
                                   child: FaIcon(
@@ -493,7 +493,7 @@ class _SignosState extends State<Signos> {
                                 height: ((MediaQuery.of(context).size.height) *
                                     .08),
                                 decoration: BoxDecoration(
-                                  color: Color(0xff0d2a31),
+                                  color: Color(0xff38786a),
                                 ),
                                 child: Center(
                                   child: FaIcon(
@@ -537,7 +537,7 @@ class _SignosState extends State<Signos> {
                                 height: ((MediaQuery.of(context).size.height) *
                                     .08),
                                 decoration: BoxDecoration(
-                                  color: Color(0xff0d2a31),
+                                  color: Color(0xff38786a),
                                 ),
                                 child: Center(
                                   child: FaIcon(
@@ -581,7 +581,7 @@ class _SignosState extends State<Signos> {
                                 height: ((MediaQuery.of(context).size.height) *
                                     .08),
                                 decoration: BoxDecoration(
-                                  color: Color(0xff0d2a31),
+                                  color: Color(0xff38786a),
                                 ),
                                 child: Center(
                                   child: FaIcon(
@@ -624,7 +624,7 @@ class _SignosState extends State<Signos> {
                                 height: ((MediaQuery.of(context).size.height) *
                                     .08),
                                 decoration: BoxDecoration(
-                                  color: Color(0xff0d2a31),
+                                  color: Color(0xff38786a),
                                 ),
                                 child: Center(
                                   child: FaIcon(
@@ -646,11 +646,11 @@ class _SignosState extends State<Signos> {
                                       ListTile(
                                         title: Text('Conjuntivitis:',
                                             style: GoogleFonts.doHyeon(
-                                                color: Color(0xff0d2a31),
+                                                color: Color(0xff38786a),
                                                 fontSize: 18.0)),
                                         subtitle: Text('Ojos rojos, llorosos.',
                                             style: TextStyle(
-                                                color: Color(0xff0d2a31),
+                                                color: Color(0xff0b7a75),
                                                 fontSize: 16.0)),
                                       ),
                                     ],
@@ -667,12 +667,12 @@ class _SignosState extends State<Signos> {
                                 height: ((MediaQuery.of(context).size.height) *
                                     .05),
                                 decoration: BoxDecoration(
-                                  color: Color(0xffd7c9aa),
+                                  color: Color(0xff364156),
                                 ),
                                 child: Center(
                                   child: FaIcon(
                                     FontAwesomeIcons.plus,
-                                    color: Color(0xff0d2a31),
+                                    color: Color(0xffdadad9),
                                     size: 20.0,
                                   ),
                                 ),
@@ -714,7 +714,7 @@ class _SignosState extends State<Signos> {
                                 height: ((MediaQuery.of(context).size.height) *
                                     .08),
                                 decoration: BoxDecoration(
-                                  color: Color(0xff0d2a31),
+                                  color: Color(0xff38786a),
                                 ),
                                 child: Center(
                                   child: FaIcon(
@@ -737,7 +737,7 @@ class _SignosState extends State<Signos> {
                                         title: Text(
                                             'Viaje o estancia a países con transmisión local comunitaria de COVID-19.',
                                             style: TextStyle(
-                                                color: Color(0xff0d2a31),
+                                                color: Color(0xff38786a),
                                                 fontSize: 14.0)),
                                       ),
                                     ],
@@ -754,7 +754,7 @@ class _SignosState extends State<Signos> {
                                 height: ((MediaQuery.of(context).size.height) *
                                     .08),
                                 decoration: BoxDecoration(
-                                  color: Color(0xff0d2a31),
+                                  color: Color(0xff38786a),
                                   borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(10.0),
                                   ),
@@ -780,7 +780,7 @@ class _SignosState extends State<Signos> {
                                         title: Text(
                                             'Haber estado en contacto con un caso confirmado o bajo investigación a COVID-19.',
                                             style: TextStyle(
-                                                color: Color(0xff0d2a31),
+                                                color: Color(0xff38786a),
                                                 fontSize: 14.0)),
                                       ),
                                     ],
