@@ -1416,7 +1416,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       fit: BoxFit.contain,
                       child:
                         Image.asset(
-                          "lib/assets/images/logocovid.png",
+                          "lib/assets/images/logocirculoo.png",
                           fit: BoxFit.cover,                        
                       )),
                 ),
