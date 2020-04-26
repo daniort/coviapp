@@ -1077,7 +1077,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 return Carousel(
                                   dotBgColor: Color(0xff212D40),
                                   animationDuration:
-                                      const Duration(milliseconds: 2050),
+                                      const Duration(milliseconds: 15000),
                                   images: [
                                     for (var item in docs)
                                       Stack(

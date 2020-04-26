@@ -169,14 +169,6 @@ class _InfoState extends State<Info> {
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: Center(
-                    child: Text('Manuel Escobar',
-                        style:
-                            TextStyle(color: Colors.blueGrey, fontSize: 15.0)),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Center(
                     child: Text('Eduardo Gamez',
                         style:
                             TextStyle(color: Colors.blueGrey, fontSize: 15.0)),
