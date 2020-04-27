@@ -1055,11 +1055,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Container(
                           width: ((MediaQuery.of(context).size.width)),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(30.0),
-                            ),
                             color: Color(0xff364156),
-
                           ),
                           child: StreamBuilder<QuerySnapshot>(
                             stream: Firestore.instance
@@ -1077,7 +1073,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 return Carousel(
                                   dotBgColor: Color(0xff212D40),
                                   animationDuration:
-                                      const Duration(milliseconds: 15000),
+                                      const Duration(milliseconds: 1000),
+                                  autoplayDuration: Duration(seconds: 15),
                                   images: [
                                     for (var item in docs)
                                       Stack(
@@ -1104,12 +1101,25 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     if (snapshot
                                                             .connectionState ==
                                                         ConnectionState.done)
-                                                      return snapshot.data;
+                                                      return Align(
+                                                         alignment:
+                                                            Alignment.topCenter,
+                                                        child: Padding(padding: EdgeInsets.only(bottom: 20.0),
+                                                        child: snapshot.data),
+                                                      );
                                                     if (snapshot
                                                             .connectionState ==
                                                         ConnectionState.waiting)
-                                                      return Image.asset(
-                                                          "lib/assets/images/3664282.png");
+                                                      return Align(
+                                                        alignment:
+                                                            Alignment.topCenter,
+                                                        child:  Padding(padding: EdgeInsets.only(bottom: 20.0),
+                                                          child: Image.asset(
+                                                            "lib/assets/images/logocovid.png",
+                                                            fit: BoxFit.contain,
+                                                          ),)
+                                                        
+                                                      );
                                                     return CircularProgressIndicator();
                                                   },
                                                 ),
@@ -1127,15 +1137,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     context: context,
                                                     isScrollControlled: true,
                                                     builder: (context) {
-                                                      var _t =
-                                                          item['titulo'] + " ";
-                                                      var _s =
-                                                          item['subtitulo'] +
-                                                              " ";
-                                                      var _f =
-                                                          item['fecha'] + " ";
-                                                      var _c =
-                                                          item['cuerpo'] + " ";
                                                       return Container(
                                                         decoration:
                                                             BoxDecoration(
@@ -1170,25 +1171,28 @@ class _MyHomePageState extends State<MyHomePage> {
                                                                   alignment:
                                                                       Alignment
                                                                           .centerLeft,
-                                                                  child:
-                                                                      Container(
-                                                                    width: ((MediaQuery.of(context)
-                                                                            .size
-                                                                            .width) *
-                                                                        0.90),
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.only(
-                                                                              topRight: Radius.circular(30.0)),
-                                                                    ),
-                                                                    child: Text(
-                                                                        "$_t",
-                                                                        style: GoogleFonts.doHyeon(
-                                                                            color:
-                                                                                Color(0xfff0f3f5),
-                                                                            fontSize: 17.0)),
-                                                                  ),
+                                                                  child: Container(
+                                                                      width: ((MediaQuery.of(context).size.width) * 0.90),
+                                                                      decoration: BoxDecoration(
+                                                                        borderRadius:
+                                                                            BorderRadius.only(topRight: Radius.circular(30.0)),
+                                                                      ),
+                                                                      child: FutureBuilder(
+                                                                        future: getData(
+                                                                            context,
+                                                                            item['titulo']),
+                                                                        builder:
+                                                                            (context,
+                                                                                snapshot) {
+                                                                          if (snapshot.connectionState ==
+                                                                              ConnectionState.done)
+                                                                            return snapshot.data;
+                                                                          if (snapshot.connectionState ==
+                                                                              ConnectionState.waiting)
+                                                                            return Text(' ');
+                                                                          return CircularProgressIndicator();
+                                                                        },
+                                                                      )),
                                                                 ),
                                                               ),
                                                               Padding(
@@ -1203,19 +1207,24 @@ class _MyHomePageState extends State<MyHomePage> {
                                                                           .centerLeft,
                                                                   child:
                                                                       Container(
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.only(
-                                                                              topRight: Radius.circular(30.0)),
-                                                                    ),
-                                                                    child: Text(
-                                                                        '$_s',
-                                                                        style: GoogleFonts.doHyeon(
-                                                                            color:
-                                                                                Color(0xfff0f3f5),
-                                                                            fontSize: 15.0)),
-                                                                  ),
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.only(topRight: Radius.circular(30.0)),
+                                                                          ),
+                                                                          child:
+                                                                              FutureBuilder(
+                                                                            future:
+                                                                                getData(context, item['subtitulo']),
+                                                                            builder:
+                                                                                (context, snapshot) {
+                                                                              if (snapshot.connectionState == ConnectionState.done)
+                                                                                return snapshot.data;
+                                                                              if (snapshot.connectionState == ConnectionState.waiting)
+                                                                                return Text(' ');
+                                                                              return CircularProgressIndicator();
+                                                                            },
+                                                                          )),
                                                                 ),
                                                               ),
                                                               Padding(
@@ -1230,19 +1239,24 @@ class _MyHomePageState extends State<MyHomePage> {
                                                                           .centerLeft,
                                                                   child:
                                                                       Container(
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.only(
-                                                                              topRight: Radius.circular(30.0)),
-                                                                    ),
-                                                                    child: Text(
-                                                                        'Publicado: $_f',
-                                                                        style: TextStyle(
-                                                                            color:
-                                                                                Color(0xfff0f3f5),
-                                                                            fontSize: 10.0)),
-                                                                  ),
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.only(topRight: Radius.circular(30.0)),
+                                                                          ),
+                                                                          child:
+                                                                              FutureBuilder(
+                                                                            future:
+                                                                                getData(context, item['fecha']),
+                                                                            builder:
+                                                                                (context, snapshot) {
+                                                                              if (snapshot.connectionState == ConnectionState.done)
+                                                                                return snapshot.data;
+                                                                              if (snapshot.connectionState == ConnectionState.waiting)
+                                                                                return Text(' ');
+                                                                              return CircularProgressIndicator();
+                                                                            },
+                                                                          )),
                                                                 ),
                                                               ),
                                                               Padding(
@@ -1258,25 +1272,24 @@ class _MyHomePageState extends State<MyHomePage> {
                                                                           .centerLeft,
                                                                   child:
                                                                       Container(
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.only(
-                                                                              topRight: Radius.circular(30.0)),
-                                                                    ),
-                                                                    child: Text(
-                                                                        '$_c',
-                                                                        textAlign:
-                                                                            TextAlign
-                                                                                .justify,
-                                                                        style:
-                                                                            TextStyle(
-                                                                          color:
-                                                                              Color(0xfff0f3f5),
-                                                                          fontSize:
-                                                                              14.0,
-                                                                        )),
-                                                                  ),
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.only(topRight: Radius.circular(30.0)),
+                                                                          ),
+                                                                          child:
+                                                                              FutureBuilder(
+                                                                            future:
+                                                                                getData(context, item['cuerpo']),
+                                                                            builder:
+                                                                                (context, snapshot) {
+                                                                              if (snapshot.connectionState == ConnectionState.done)
+                                                                                return snapshot.data;
+                                                                              if (snapshot.connectionState == ConnectionState.waiting)
+                                                                                return Text(' ');
+                                                                              return CircularProgressIndicator();
+                                                                            },
+                                                                          )),
                                                                 ),
                                                               ),
                                                               Padding(
@@ -1376,11 +1389,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                                                   0xfff0f3f5),
                                                               fontSize: 17.0)),
                                                   subtitle: Text('Leer Más...',
-                                                      style:
-                                                          GoogleFonts.doHyeon(
-                                                              color: Color(
-                                                                  0xfff0f3f9),
-                                                              fontSize: 15.0)),
+                                                      style: TextStyle(
+                                                          color: Colors.blue,
+                                                          fontSize: 15.0)),
                                                 ),
                                               ),
                                             ),
@@ -1411,13 +1422,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: UserAccountsDrawerHeader(
                   accountName: Text("Bienvenidos a \nCOVID AutoDx"),
                   currentAccountPicture: FittedBox(
-                    
-
                       fit: BoxFit.contain,
-                      child:
-                        Image.asset(
-                          "lib/assets/images/logocirculoo.png",
-                          fit: BoxFit.cover,                        
+                      child: Image.asset(
+                        "lib/assets/images/logocirculoo.png",
+                        fit: BoxFit.cover,
                       )),
                 ),
               ),
@@ -2116,7 +2124,24 @@ Future<Widget> getImage(BuildContext context, String item) async {
     var url = await ref.getDownloadURL();
     m = Image.network(url.toString());
   } else {
-    m = Image.asset("lib/assets/images/3664282.png");
+    m = Image.asset(
+                  "lib/assets/images/long.png",
+                  fit: BoxFit.cover,
+                );
+    
+  }
+  return m;
+}
+
+Future<Widget> getData(BuildContext context, String item) async {
+  Text m;
+  if (item != null) {
+    m = Text(
+      '$item',
+      style: GoogleFonts.doHyeon(color: Color(0xfff0f3f5), fontSize: 15.0),
+    );
+  } else {
+    m = Text(' ');
   }
   return m;
 }

@@ -98,6 +98,9 @@ class _RecomendacionesState extends State<Recomendaciones> {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: InkWell(
+                onTap: () {
+                  launch('https://covid-19.cozcyt.gob.mx/prevencion/');
+                },
                 child: Container(
                   height: ((MediaQuery.of(context).size.height) * .25),
                   width: ((MediaQuery.of(context).size.width)),
