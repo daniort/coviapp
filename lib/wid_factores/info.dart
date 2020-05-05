@@ -22,7 +22,7 @@ class _InfoState extends State<Info> {
         padding: const EdgeInsets.all(15.0),
         child: SingleChildScrollView(
           child: Container(
-            height: ((MediaQuery.of(context).size.height) * 1.4),
+            //height: ((MediaQuery.of(context).size.height) * 1.4),
             width: ((MediaQuery.of(context).size.width)),
             decoration: BoxDecoration(
               color: Color(0xfff0f3f5),
@@ -31,8 +31,8 @@ class _InfoState extends State<Info> {
             child: Column(
               children: <Widget>[
                 Padding(
-                   padding: const EdgeInsets.only(
-                      top: 70.0, left: 10.0, right: 10.0, bottom: 10.0),
+                  padding: const EdgeInsets.only(
+                      top: 30.0, left: 10.0, right: 10.0, bottom: 10.0),
                   child: Container(
                     width: ((MediaQuery.of(context).size.width) * 0.4),
                     child: Image.asset("lib/assets/images/logotrans.png"),
@@ -61,13 +61,13 @@ class _InfoState extends State<Info> {
                   ),
                 ),
                 Container(
-                  width: ((MediaQuery.of(context).size.width) * 0.7),
-                  child: Image.asset("lib/assets/images/logocoz.png"),
+                  height: ((MediaQuery.of(context).size.height) * 0.2),
+                  child: Image.asset("lib/assets/images/labs.jpeg"),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top:8.0),
+                  padding: const EdgeInsets.only(top: 8.0),
                   child: Container(
-                    width: ((MediaQuery.of(context).size.width) * 0.7),
+                    width: ((MediaQuery.of(context).size.width) * 0.5),
                     child: Image.asset("lib/assets/images/logolabsol.png"),
                   ),
                 ),
@@ -83,7 +83,22 @@ class _InfoState extends State<Info> {
                   ),
                 ),
                 Padding(
-                   padding: const EdgeInsets.only(
+                  padding: const EdgeInsets.only(top: 40.0),
+                  child: Container(
+                    height: ((MediaQuery.of(context).size.height) * 0.05),
+                    child: Center(
+                      child: Text('En colaboración con:',
+                          style: TextStyle(
+                              color: Colors.blueGrey, fontSize: 15.0)),
+                    ),
+                  ),
+                ),
+                Container(
+                  height: ((MediaQuery.of(context).size.height) * 0.2),
+                  child: Image.asset("lib/assets/images/logot.png"),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
                       top: 70.0, left: 10.0, right: 10.0, bottom: 10.0),
                   child: Row(
                     children: <Widget>[
@@ -186,6 +201,14 @@ class _InfoState extends State<Info> {
                   padding: const EdgeInsets.all(4.0),
                   child: Center(
                     child: Text('José Casillas',
+                        style:
+                            TextStyle(color: Colors.blueGrey, fontSize: 15.0)),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Center(
+                    child: Text(' ',
                         style:
                             TextStyle(color: Colors.blueGrey, fontSize: 15.0)),
                   ),

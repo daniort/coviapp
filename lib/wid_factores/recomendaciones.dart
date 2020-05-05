@@ -174,7 +174,7 @@ class _RecomendacionesState extends State<Recomendaciones> {
               padding: const EdgeInsets.all(10.0),
               child: InkWell(
                 onTap: () {
-                  launch('https://www.saludzac.gob.mx/');
+                  launch('https://www.who.int/es/emergencies/diseases/novel-coronavirus-2019/advice-for-public');
                 },
                 child: Container(
                   height: ((MediaQuery.of(context).size.height) * .25),

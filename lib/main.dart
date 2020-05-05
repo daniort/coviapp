@@ -1280,7 +1280,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                                           child:
                                                                               FutureBuilder(
                                                                             future:
-                                                                                getData(context, item['cuerpo']),
+                                                                                getDataCuerpo(context, item['cuerpo']),
                                                                             builder:
                                                                                 (context, snapshot) {
                                                                               if (snapshot.connectionState == ConnectionState.done)
@@ -1385,6 +1385,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   title: Text(item['titulo'],
                                                       style:
                                                           GoogleFonts.doHyeon(
+
                                                               color: Color(
                                                                   0xfff0f3f5),
                                                               fontSize: 17.0)),
@@ -2138,7 +2139,7 @@ Future<Widget> getData(BuildContext context, String item) async {
   if (item != null) {
     m = Text(
       '$item',
-      style: GoogleFonts.doHyeon(color: Color(0xfff0f3f5), fontSize: 15.0),
+      style:GoogleFonts.doHyeon(color: Color(0xfff0f3f5), fontSize: 15.0),
     );
   } else {
     m = Text(' ');
@@ -2146,6 +2147,20 @@ Future<Widget> getData(BuildContext context, String item) async {
   return m;
 }
 
+
+Future<Widget> getDataCuerpo(BuildContext context, String item) async {
+  Text m;
+  if (item != null) {
+    m = Text(
+      '$item',
+      style: TextStyle(color: Color(0xfff0f3f5), fontSize: 13.0),
+      textAlign: TextAlign.justify,
+    );
+  } else {
+    m = Text(' ');
+  }
+  return m;
+}
 class FireStorageService extends ChangeNotifier {
   FireStorageService._();
   FireStorageService();
